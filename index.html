@@ -299,7 +299,149 @@
       
         
           
-            <p><a href="http://jokerliang.com/markdown-editing-and-preview-in-sublime-text-3.html" target="_blank" rel="noopener">http://jokerliang.com/markdown-editing-and-preview-in-sublime-text-3.html</a><br><a href="http://blog.csdn.net/github_32886825/article/details/52930195" target="_blank" rel="noopener">http://blog.csdn.net/github_32886825/article/details/52930195</a></p>
+            <p>这种做法可能会对你的磁盘IO造成一小部分性能负担，但负面影响足以忽略。另外，由于这种频率的读写会被磁盘缓存接管，不必担心磁盘寿命的影响。</p>
+<h1 id="安装软件包管理器"><a href="#安装软件包管理器" class="headerlink" title="安装软件包管理器"></a>安装软件包管理器</h1><p>对于刚安装好的Sublime Text，我们需要安装一个软件包管理器。<br>同时按下ctrl+`,将会在窗口底部出现一个小控制台。<br>我们把这段话复制并粘贴到控制台的编辑栏里：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</span><br></pre></td></tr></table></figure></p>
+<p>耐心等待操作完成，之后关闭并重新打开Sublime Text 3.</p>
+<h1 id="安装我们用到的插件"><a href="#安装我们用到的插件" class="headerlink" title="安装我们用到的插件"></a>安装我们用到的插件</h1><p>按下ctrl+shift+P打开快速菜单，键入’Package Control: Install Package’,<br>回车，等待数据更新，完成后会主动显示软件列表。<br><strong>Markdown Editing</strong>  // Markdown编辑和语法高亮支持<br><strong>Markdown Preview</strong>  // Markdown导出html预览支持<br><strong>auto-save</strong>  // 可自定义的自动保存功能<br><strong>LiveReload</strong>  // 可以即时刷新 </p>
+<p>前两个是标准的markdown编辑与预览工具，第三个和第四个是实现实时预览的关键。<br>安装结束后我们新建一个md文档试试。</p>
+<h1 id="实现实时预览功能"><a href="#实现实时预览功能" class="headerlink" title="实现实时预览功能"></a>实现实时预览功能</h1><h2 id="先实现最基本的预览功能"><a href="#先实现最基本的预览功能" class="headerlink" title="先实现最基本的预览功能"></a>先实现最基本的预览功能</h2><p>我们使用Markdown Preview插件来打开浏览器进行预览：<br>按下ctrl+shift+P打开快速菜单，键入<strong>Markdown Preview in Browser</strong>,之后选择markdown即可打开你的默认浏览器来预览刚才的内容。 </p>
+<p>一定要记得先在磁盘上保存为一个文件，这样才能转化成html。</p>
+<h2 id="实现文件自动保存（启动auto插件）"><a href="#实现文件自动保存（启动auto插件）" class="headerlink" title="实现文件自动保存（启动auto插件）"></a>实现文件自动保存（启动auto插件）</h2><p>这里我们用到了一个叫做auto-save的插件，它可以针对一个文档实现空闲x秒后自动保存。 </p>
+<p>我们打开auto-save的默认设置和用户设置文件：<br>Preference-&gt;Package Settings-&gt;Auto-save-&gt;打开Settings-Defualt和Settings-User<br>将Default的内容复制粘贴到User里面，然后修改等待时长：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;auto_save_delay_in_seconds&quot;: 0.15,</span><br></pre></td></tr></table></figure></p>
+<p>经过实测，0.15是一个比较能接受的值，不会对磁盘造成频繁读写的影响，延迟也不大。 </p>
+<p>最后就是打开本文档的自动保存功能了：<br>按下ctrl+shift+P打开快速菜单，键入<strong>Toggle AutoSave: current file only</strong> 。<br>至此，自动保存将在文档更改0.15秒后触发一次，停止自动保存就将上述步骤再做一次即可。</p>
+<p><strong>这一步可以省略，不进行这一步的话需要ctrl+s后网页才会显示修改后的内容。</strong></p>
+<h2 id="实现实时预览（启动liveReload插件实现网页实时加载）"><a href="#实现实时预览（启动liveReload插件实现网页实时加载）" class="headerlink" title="实现实时预览（启动liveReload插件实现网页实时加载）"></a>实现实时预览（启动liveReload插件实现网页实时加载）</h2><p>按快捷键 Ctrl + Shift + P，输入<strong>LiveReload: Enable/disable plug-ins.</strong><br>并选择<strong>Enable: Simple Reload with delay (400ms).</strong><br>完成启用工作。</p>
+<p>这时再行编辑md文件，即可实现实时预览。</p>
+<p>感谢：<br><a href="http://jokerliang.com/markdown-editing-and-preview-in-sublime-text-3.html" target="_blank" rel="noopener">http://jokerliang.com/markdown-editing-and-preview-in-sublime-text-3.html</a><br><a href="http://blog.csdn.net/github_32886825/article/details/52930195" target="_blank" rel="noopener">http://blog.csdn.net/github_32886825/article/details/52930195</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老杨">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老杨的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/14/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T20:29:14+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>sdsfaf<br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -439,134 +581,6 @@
 <p>随后按照提示，分别输入自己的Github账号用户名和密码，开始上传。 然后通过<a href="http://yourname.github.io/来访问自己刚刚上传的网站。" target="_blank" rel="noopener">http://yourname.github.io/来访问自己刚刚上传的网站。</a></p>
 <h3 id="添加新文章"><a href="#添加新文章" class="headerlink" title="添加新文章"></a>添加新文章</h3><p>打开Hexo目录下的source文件夹，所有的文章都会以md形式保存在_post文件夹中，只要在_post文件夹中新建md类型的文档，就能在执行hexo g的时候被渲染。 新建的文章头需要添加一些yml信息，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: hello-world   //在此处添加你的标题。</span><br><span class="line">date: 2014-11-7 08:55:29   //在此处输入你编辑这篇文章的时间。</span><br><span class="line">categories: Exercise   //在此处输入这篇文章的分类。</span><br><span class="line">toc: true  //在此处设定是否开启目录，需要主题支持。</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
 <p><a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="noopener">https://xuanwo.org/2015/03/26/hexo-intor/</a><br><a href="https://meesong.github.io/StaticBlog/2017/NexT+Gitment/" target="_blank" rel="noopener">https://meesong.github.io/StaticBlog/2017/NexT+Gitment/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老杨">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老杨的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/14/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T20:29:14+08:00">
-                2018-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>sdsfaf<br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
