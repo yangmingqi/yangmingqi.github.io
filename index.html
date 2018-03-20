@@ -228,7 +228,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/hexo+laltex/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/Lagrange/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老杨">
@@ -247,7 +247,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/20/hexo+laltex/" itemprop="url">在Hexo中使用MathJax插入Latex公式</a></h1>
+                <a class="post-title-link" href="/2018/03/20/Lagrange/" itemprop="url">拉格朗日乘子法</a></h1>
         
 
         <div class="post-meta">
@@ -259,7 +259,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T09:55:06+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T10:20:46+08:00">
                 2018-03-20
               </time>
             
@@ -299,7 +299,37 @@
       
         
           
-            <script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-x}}</script><p>感谢：<a href="http://hongyitong.github.io/2016/10/24/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E4%B8%AD%E4%BD%BF%E7%94%A8MathJax/" target="_blank" rel="noopener">http://hongyitong.github.io/2016/10/24/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E4%B8%AD%E4%BD%BF%E7%94%A8MathJax/</a></p>
+            <h1 id="对拉格朗日乘子法的直观理解"><a href="#对拉格朗日乘子法的直观理解" class="headerlink" title="对拉格朗日乘子法的直观理解"></a>对拉格朗日乘子法的直观理解</h1><p>假如你面前有一座山，山上有一条复杂的小路，如果你爬山的时候只能顺着小路走，那么什么时候你发现自己到了某个至高点呢？很明显，当你发现自己不论是往前走，还是往后退时，高度总是下降的，那么这时你就位于一个局部的最高点了。[1]<br><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/LagrangeMultipliers3D.png" width="450"></p>
+<h1 id="拉格朗日乘子法的数学原理"><a href="#拉格朗日乘子法的数学原理" class="headerlink" title="拉格朗日乘子法的数学原理"></a>拉格朗日乘子法的数学原理</h1><p>经典拉格朗日乘子法是下面的优化问题：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+max_{x,y}f(x,y) \\\
+s.t.g(x,y)=0
+\end{align} \tag 1</script><p>我们可以将\( f(x,y) \)看作是山，将\( g(x,y)=0 \)看作是山上的小路。</p>
+<p>这里采用等高线方式描述\( f(x,y) \)（对方程\( f(x,y)=d \)对不同d绘图），并绘制约束条件\( g(x,y)=0 \)的曲线。相当于约束曲线\( g(x,y)=0 \)与\( f(x,y) \)的某条等高线相切时，取得最优解。(如下图，<strong>箭头代表梯度方向</strong>)</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/LagrangeMultipliers2D.svg" width="450"></p>
+<p><strong>个人觉得\( g(x,y)=0 \)既可以看作是一条约束直线（紫橘色线），可也以看作是一个平面（蓝色平面）</strong><br><strong>浅蓝色曲线是橘色线在红色平面上的隐射（也是上图中的红线）</strong><br><strong>相切指的是紫橘色线在深蓝色平面上与浅蓝色曲线的切点（也是我们要求的极值）</strong></p>
+<p><img src="https://qph.ec.quoracdn.net/main-qimg-353636823f9a407455d4685c63639d04" width="450"></p>
+<p>“当\( g(x,y)=0 \)与\( f(x,y) \)等高线相切时”，是取得最优解的充要条件（前提是\( f(x,y) \)是凸函数），该条件可拆分成两部分：</p>
+<ol>
+<li>\( g(x,y) \)与\( f(x,y) \)的某条等高线相切（<strong>等价于寻找使这两个函数梯度方向共线的点</strong>）</li>
+<li>\( g(x,y)=0 \)</li>
+</ol>
+<p>上述条件可用方程组描述如下所示： </p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\nabla_{x,y}f(x,y) = \lambda \nabla_{x,y} g(x,y) \\\
+g(x,y)=0
+\end{cases} \tag 2</script><p>这时引入拉格朗日函数： </p>
+<script type="math/tex; mode=display">L(x,y,\lambda) = f(x,y) + \lambda g(x,y) \tag 3</script><p>则拉格朗日函数\( L(x,y,\lambda) \)：的梯度为</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\nabla_{x,y}L(x,y,\lambda) =\nabla_{x,y}f(x,y) + \lambda \nabla_{x,y} g(x,y) \\\
+\nabla_{\lambda}L(x,y,\lambda) = g(x,y)
+\end{cases} \tag 4</script><p>即若令拉格朗日函数的梯度为零，即令(4)式为零，即可得到方程(2)，虽然\( \lambda \)符号相反但不影响。</p>
+<h1 id="系数-lambda-作用"><a href="#系数-lambda-作用" class="headerlink" title="系数\( \lambda \)作用"></a>系数\( \lambda \)作用</h1><p>为了消除正负号可能对读者带来的困扰，我们对(2)和(4)做如下变化</p>
+<script type="math/tex; mode=display">|\lambda| = |\frac{\nabla f(x)}{\nabla g(x)}| \tag5</script><p>可以发现，当\( |\lambda| \)越小，\( \nabla g(x) \)的模就越大于\( \nabla f(x) \)。极端情况下，\( |\lambda| \rightarrow 0\)，此时\( |\nabla g(x)|  \rightarrow \infty  \)。这意味着在\(x\)点，\( g(x) \)几乎是垂直的，对增量非常敏感：当最优值不小心变一点点，条件\( g(x)=0 \)将严重偏离；若\( |\lambda| \)很大，\( g(x) \)几乎是水平的，则其对增量不敏感（若\( g(x) \)的轻微偏离不会造成太大的损失，可以适当牺牲约束条件的精确性，来换取更优的解）。<br>换句话说，\( |\lambda| \)越小，其求得的结果灵敏度越高，反之越低；可以说\( |\lambda| \)是衡量最优解灵敏度的一种方法。（当然也可以直接求\( \nabla g(x) \)来衡量灵敏度，这样更绝对一点）[2]</p>
+<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p>[1] <a href="http://blog.csdn.net/unoboros/article/details/29363223" target="_blank" rel="noopener">一种对拉格朗日乘子的直观理解</a><br>[2] <a href="http://blog.csdn.net/u014792304/article/details/78396955" target="_blank" rel="noopener">拉格朗日乘子法（Lagrange Multiplier）详解以及乘子lambda的意义</a><br>[3]<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/" target="_blank" rel="noopener">【直观详解】拉格朗日乘法和KKT条件</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
           
         
@@ -422,9 +452,8 @@
             <h1 id="逻辑斯蒂回归模型定义及来源"><a href="#逻辑斯蒂回归模型定义及来源" class="headerlink" title="逻辑斯蒂回归模型定义及来源"></a>逻辑斯蒂回归模型定义及来源</h1><h2 id="logist分布"><a href="#logist分布" class="headerlink" title="logist分布"></a>logist分布</h2><p>逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数：</p>
 <script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-x}}</script><h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>而逻辑斯蒂回归模型模型的另一个则是来源于线性回归：</p>
 <script type="math/tex; mode=display">g(x) = w_0x_0 +   w_1x_1  + ··· +  w_nx_n = w^Tx</script><p>把两者组合起来，就形成了大名鼎鼎的十大数据挖掘算法（LR）：</p>
-<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-g(x)}} = \frac{1}{1+e^{-w^Tx}} = \frac{e^{w^Tx}}{1+e^{w^Tx}}</script><h1 id="二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导"><a href="#二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导" class="headerlink" title="二项逻辑斯蒂回归( binomial logistic regression)模型与推导"></a>二项逻辑斯蒂回归( binomial logistic regression)模型与推导</h1><p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large%20x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}"></p>
-<p><a href="http://www.forkosh.com/mathtex.cgi?\Large" target="_blank" rel="noopener">http://www.forkosh.com/mathtex.cgi?\Large</a> x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</p>
-<p>\( 行间公式  \)</p>
+<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-g(x)}} = \frac{1}{1+e^{-w^Tx}} = \frac{e^{w^Tx}}{1+e^{w^Tx}}</script><h1 id="二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导"><a href="#二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导" class="headerlink" title="二项逻辑斯蒂回归( binomial logistic regression)模型与推导"></a>二项逻辑斯蒂回归( binomial logistic regression)模型与推导</h1><p>\( 行间公式  \)</p>
+<p>dd</p>
 <p><a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">http://blog.csdn.net/qq_35082030/article/details/70474076</a><br><a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Multinomial_logistic_regression</a><br><a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">https://chenrudan.github.io/blog/2016/01/09/logisticregression.html</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
