@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="逻辑斯蒂回归模型定义及来源logist分布逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数： f(x) = \frac{1}{1+e^{-x}}  线性回归而逻辑斯蒂回归模型模型的另一个则是来源于线性回归： g(x) = w_0x_0 +   w_1x_1  + ··· +  w_nx_n = w^Tx把两者组合起来，对线性回归的结果加上一个逻辑斯蒂函数">
+<meta name="description" content="逻辑斯蒂回归模型定义及来源logist分布逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数： f(x) = \frac{1}{1+e^{-x}} \tag1 sigmoid函数可以做回归也可以做分类。相比于线性回归，它有一个好处是不容易受极端值的影响。 线性回归而逻辑斯蒂回归模型模型的另一个则是来源于线性回归： g(x) = w_0x_0 +   w_1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="逻辑斯蒂回归(Logistic Regression)总结">
 <meta property="og:url" content="http://yoursite.com/2018/03/18/logist/index.html">
 <meta property="og:site_name" content="老杨的博客">
-<meta property="og:description" content="逻辑斯蒂回归模型定义及来源logist分布逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数： f(x) = \frac{1}{1+e^{-x}}  线性回归而逻辑斯蒂回归模型模型的另一个则是来源于线性回归： g(x) = w_0x_0 +   w_1x_1  + ··· +  w_nx_n = w^Tx把两者组合起来，对线性回归的结果加上一个逻辑斯蒂函数">
+<meta property="og:description" content="逻辑斯蒂回归模型定义及来源logist分布逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数： f(x) = \frac{1}{1+e^{-x}} \tag1 sigmoid函数可以做回归也可以做分类。相比于线性回归，它有一个好处是不容易受极端值的影响。 线性回归而逻辑斯蒂回归模型模型的另一个则是来源于线性回归： g(x) = w_0x_0 +   w_1">
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*sOtpVYq2Msjxz51XMn1QSA.png">
 <meta property="og:image" content="http://7xkmdr.com1.z0.glb.clouddn.com/lr5.jpg">
 <meta property="og:image" content="http://img.blog.csdn.net/20140302234224515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvem91eHkwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-03-20T14:01:41.749Z">
+<meta property="og:updated_time" content="2018-03-21T12:54:38.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逻辑斯蒂回归(Logistic Regression)总结">
-<meta name="twitter:description" content="逻辑斯蒂回归模型定义及来源logist分布逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数： f(x) = \frac{1}{1+e^{-x}}  线性回归而逻辑斯蒂回归模型模型的另一个则是来源于线性回归： g(x) = w_0x_0 +   w_1x_1  + ··· +  w_nx_n = w^Tx把两者组合起来，对线性回归的结果加上一个逻辑斯蒂函数">
+<meta name="twitter:description" content="逻辑斯蒂回归模型定义及来源logist分布逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数： f(x) = \frac{1}{1+e^{-x}} \tag1 sigmoid函数可以做回归也可以做分类。相比于线性回归，它有一个好处是不容易受极端值的影响。 线性回归而逻辑斯蒂回归模型模型的另一个则是来源于线性回归： g(x) = w_0x_0 +   w_1">
 <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*sOtpVYq2Msjxz51XMn1QSA.png">
 
 
@@ -188,7 +188,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -198,7 +198,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -262,7 +262,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T21:00:01+08:00">
                 2018-03-18
@@ -313,13 +313,36 @@
 
       
         <h1 id="逻辑斯蒂回归模型定义及来源"><a href="#逻辑斯蒂回归模型定义及来源" class="headerlink" title="逻辑斯蒂回归模型定义及来源"></a>逻辑斯蒂回归模型定义及来源</h1><h2 id="logist分布"><a href="#logist分布" class="headerlink" title="logist分布"></a>logist分布</h2><p>逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数：</p>
-<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-x}}</script><p><img src="https://cdn-images-1.medium.com/max/1600/1*sOtpVYq2Msjxz51XMn1QSA.png" width="450"></p>
-<p><img src="http://7xkmdr.com1.z0.glb.clouddn.com/lr5.jpg" width="600"></p>
+<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-x}} \tag1</script><p><img src="https://cdn-images-1.medium.com/max/1600/1*sOtpVYq2Msjxz51XMn1QSA.png" width="450"></p>
+<p>sigmoid函数可以做回归也可以做分类。相比于线性回归，它有一个好处是不容易受极端值的影响。<br><img src="http://7xkmdr.com1.z0.glb.clouddn.com/lr5.jpg" width="600"></p>
 <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>而逻辑斯蒂回归模型模型的另一个则是来源于线性回归：</p>
-<script type="math/tex; mode=display">g(x) = w_0x_0 +   w_1x_1  + ··· +  w_nx_n = w^Tx</script><p>把两者组合起来，对线性回归的结果加上一个逻辑斯蒂函数，就是我们说的逻辑斯蒂回归：</p>
-<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-g(x)}} = \frac{1}{1+e^{-w^Tx}} = \frac{e^{w^Tx}}{1+e^{w^Tx}}</script><p>logistic回归就是一个线性分类模型，它与线性回归的不同点在于：为了将线性回归输出的很大范围的数，例如从负无穷到正无穷，压缩到0和1之间，这样的输出值表达为“可能性”才能说服广大民众。当然了，把大值压缩到这个范围还有个很好的好处，就是可以消除特别冒尖的变量的影响（不知道理解的是否正确）。而实现这个伟大的功能其实就只需要平凡一举，也就是在输出加一个logistic函数。另外，对于二分类来说，可以简单的认为：如果样本x属于正类的概率大于0.5，那么就判定它是正类，否则就是负类。[1]<br><img src="http://img.blog.csdn.net/20140302234224515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvem91eHkwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="450"><br>逻辑回归的成功之处在于，将原本输出结果范围可以非常大的\(w^Tx\) 通过sigmoid函数映射到(0,1)，从而完成概率的估测。</p>
-<h1 id="二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导"><a href="#二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导" class="headerlink" title="二项逻辑斯蒂回归( binomial logistic regression)模型与推导"></a>二项逻辑斯蒂回归( binomial logistic regression)模型与推导</h1><p>\( 行间公式  \)</p>
-<h1 id="优化求解"><a href="#优化求解" class="headerlink" title="优化求解"></a>优化求解</h1><h2 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h2><h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><h2 id="拟牛顿法"><a href="#拟牛顿法" class="headerlink" title="拟牛顿法"></a>拟牛顿法</h2><h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br><a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br><a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br><a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br><a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a></p>
+<script type="math/tex; mode=display">g(x) = w_0x_0 +   w_1x_1  + ··· +  w_nx_n = w^Tx \tag2</script><p>把两者组合起来，对线性回归的结果加上一个逻辑斯蒂函数，就是我们说的逻辑斯蒂回归：</p>
+<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-g(x)}} = \frac{1}{1+e^{-w^Tx}} = \frac{e^{w^Tx}}{1+e^{w^Tx}} \tag3</script><p>logistic回归就是一个线性分类模型，它与线性回归的不同点在于：为了将线性回归输出的很大范围的数，例如从负无穷到正无穷，压缩到0和1之间，这样的输出值表达为“可能性”才能说服广大民众。当然了，把大值压缩到这个范围还有个很好的好处，就是可以消除特别冒尖的变量的影响（不知道理解的是否正确）。而实现这个伟大的功能其实就只需要平凡一举，也就是在输出加一个logistic函数。另外，对于二分类来说，可以简单的认为：如果样本x属于正类的概率大于0.5，那么就判定它是正类，否则就是负类。[1]<br><img src="http://img.blog.csdn.net/20140302234224515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvem91eHkwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="450"><br><strong>逻辑回归的成功之处在于，将原本输出结果范围可以非常大的\(w^Tx\) 通过sigmoid函数映射到(0,1)，从而完成概率的估测。</strong></p>
+<h1 id="二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导"><a href="#二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导" class="headerlink" title="二项逻辑斯蒂回归( binomial logistic regression)模型与推导"></a>二项逻辑斯蒂回归( binomial logistic regression)模型与推导</h1><h2 id="二项逻辑斯蒂回归模型"><a href="#二项逻辑斯蒂回归模型" class="headerlink" title="二项逻辑斯蒂回归模型"></a>二项逻辑斯蒂回归模型</h2><p>二项回归模型形式表示如下:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+p(Y=1|x)= \frac{e^{w^Tx}}{1+e^{w^Tx}} \tag4\\\
+p(Y=0|x)=1−p(Y=1|x)=\frac{1}{1+e^{w^Tx}} \tag5
+\end{align}</script><p>在上一节中，我们讲，这个来源于我们的sigmoid函数。而具体的，其实主要来源于一个逻辑斯蒂回归模型。它牵扯到这样一个名词——几率。</p>
+<p>一个事件的几率（odds）是指该事件发生的概率与该事件不发生的概率的比值。如果事件发生的概率是\(p\)，那么该事件的几率是\(\frac{p}{1-p}\)。因次，该事件的对数几率就为： </p>
+<script type="math/tex; mode=display">logit(p)=log(\frac{p}{1-p}) \tag6</script><p>对逻辑斯蒂回归而言，将\( (4)和(5)带入(6)\)得：</p>
+<script type="math/tex; mode=display">log\frac{P(Y=1|x)}{1-P(Y=1|x)} = w^Tx \tag7</script><p>这个式子就是说，输出Y=1的<strong>对数几率</strong>是输入x的线性函数。</p>
+<h2 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h2><p>首先，我们可以得出似然函数为：</p>
+<script type="math/tex; mode=display">\prod_{i=1}^N p(Y=1|x_i)^{y_i} p(Y=0|x_i)^{y_i} \tag8</script><p>因为似然函数不好直接求解，所以转换为对数似然函数：</p>
+<script type="math/tex; mode=display">
+L(w)= \sum_{i=1}^N [y_ilogp(Y=1|x_i)+(1-y_i)p(Y=0|x_i)] \tag9</script><p>将\( (4)和(5)带入(9)\)，很容易求出：</p>
+<script type="math/tex; mode=display">
+L(w)= \sum_{i=1}^N[y_i(w^Tx_i)-log((1+e^{w^Tx_i}))] \tag{10}</script><p><strong>对\(L(w)\)求极大值，就可以得到\(w\)的估计值。</strong>这样，问题就变成了以对数似然函数为目标函数的最优化问题。<br>这时候，用\(L(w)\)对\(w\)求导，得到：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\nabla_wL(w) = \sum_{i=1}^N(y_ix_i - \frac{e^{w^Tx_i}}{1+e^{w^Tx_i}}x_i) = x_i\sum_{i=1}^N(y_i - h_w(x_i) ) \\\
+h_w(x_i) = P(y=1|x_i)
+\end{align}</script><p><strong>(\(h_w(x_i)\)为逻辑斯蒂模型)</strong></p>
+<p>然后我们令该导数为0，你会很失望的发现，它无法解析求解。不信你就去尝试一下。所以没办法了，只能借助高大上的迭代来搞定了。通常采用的方法是梯度下降法或者拟牛顿法。</p>
+<h1 id="优化求解"><a href="#优化求解" class="headerlink" title="优化求解"></a>优化求解</h1><h2 id="梯度下降-gradient-descent"><a href="#梯度下降-gradient-descent" class="headerlink" title="梯度下降(gradient descent)"></a>梯度下降(gradient descent)</h2><p> 为了求\(L(w)\)的极大值，我们采用梯度上升来解决这个问题，即沿着梯度的反向发进行迭代：</p>
+<script type="math/tex; mode=display">w_{t+1}^T = w_t^T - \alpha\nabla_wL(w) = w_t^T - \alpha\sum_{i=1}^N(y_i - h_w(x_i) )x_i</script><p> 其中，参数α叫学习率，就是每一步走多远，这个参数蛮关键的。如果设置的太多，那么很容易就在最优值附加徘徊，因为你步伐太大了。但如果设置的太小，那收敛速度就太慢了，向蜗牛一样，虽然会落在最优的点，但是这速度如果是猴年马月，我们也没这耐心啊。所以有的改进就是在这个学习率这个地方下刀子的。我开始迭代是，学习率大，慢慢的接近最优值的时候，我的学习率变小就可以了。</p>
+<h2 id="随机梯度下降SGD-stochastic-gradient-descent"><a href="#随机梯度下降SGD-stochastic-gradient-descent" class="headerlink" title="随机梯度下降SGD (stochastic gradient descent)"></a>随机梯度下降SGD (stochastic gradient descent)</h2><p>梯度下降算法在每次更新回归系数的时候都需要遍历整个数据集（计算整个数据集的回归误差），该方法对小数据集尚可。但当遇到有数十亿样本和成千上万的特征时，就有点力不从心了，它的计算复杂度太高。SGD则是每来一次样本进行一次计算：</p>
+<script type="math/tex; mode=display">w_{t+1}^T  = w_t^T - \alpha(y_i - h_w(x_i) )x_i</script><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><h2 id="拟牛顿法"><a href="#拟牛顿法" class="headerlink" title="拟牛顿法"></a>拟牛顿法</h2><h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br><a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br><a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br><a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br><a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
       
@@ -418,10 +441,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -442,7 +465,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -478,7 +501,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑斯蒂回归模型定义及来源"><span class="nav-number">1.</span> <span class="nav-text">逻辑斯蒂回归模型定义及来源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#logist分布"><span class="nav-number">1.1.</span> <span class="nav-text">logist分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归"><span class="nav-number">1.2.</span> <span class="nav-text">线性回归</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导"><span class="nav-number">2.</span> <span class="nav-text">二项逻辑斯蒂回归( binomial logistic regression)模型与推导</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化求解"><span class="nav-number">3.</span> <span class="nav-text">优化求解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降"><span class="nav-number">3.1.</span> <span class="nav-text">梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机梯度下降"><span class="nav-number">3.2.</span> <span class="nav-text">随机梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#牛顿法"><span class="nav-number">3.3.</span> <span class="nav-text">牛顿法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拟牛顿法"><span class="nav-number">3.4.</span> <span class="nav-text">拟牛顿法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#softmax"><span class="nav-number">4.</span> <span class="nav-text">softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑斯蒂回归模型定义及来源"><span class="nav-number">1.</span> <span class="nav-text">逻辑斯蒂回归模型定义及来源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#logist分布"><span class="nav-number">1.1.</span> <span class="nav-text">logist分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归"><span class="nav-number">1.2.</span> <span class="nav-text">线性回归</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导"><span class="nav-number">2.</span> <span class="nav-text">二项逻辑斯蒂回归( binomial logistic regression)模型与推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二项逻辑斯蒂回归模型"><span class="nav-number">2.1.</span> <span class="nav-text">二项逻辑斯蒂回归模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型参数估计"><span class="nav-number">2.2.</span> <span class="nav-text">模型参数估计</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化求解"><span class="nav-number">3.</span> <span class="nav-text">优化求解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降-gradient-descent"><span class="nav-number">3.1.</span> <span class="nav-text">梯度下降(gradient descent)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机梯度下降SGD-stochastic-gradient-descent"><span class="nav-number">3.2.</span> <span class="nav-text">随机梯度下降SGD (stochastic gradient descent)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#牛顿法"><span class="nav-number">3.3.</span> <span class="nav-text">牛顿法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拟牛顿法"><span class="nav-number">3.4.</span> <span class="nav-text">拟牛顿法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#softmax"><span class="nav-number">4.</span> <span class="nav-text">softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -508,7 +531,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
