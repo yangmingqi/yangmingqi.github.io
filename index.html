@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -257,7 +257,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T10:20:46+08:00">
                 2018-03-20
@@ -424,7 +424,7 @@ x^2+y^2-3=0
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T21:00:01+08:00">
                 2018-03-18
@@ -496,7 +496,15 @@ h_w(x_i) = P(y=1|x_i)
 <h2 id="优化求解"><a href="#优化求解" class="headerlink" title="优化求解"></a>优化求解</h2><h3 id="梯度下降-gradient-descent"><a href="#梯度下降-gradient-descent" class="headerlink" title="梯度下降(gradient descent)"></a>梯度下降(gradient descent)</h3><p> 为了求\(L(w)\)的极大值，我们采用梯度上升来解决这个问题，即沿着梯度的反向发进行迭代：</p>
 <script type="math/tex; mode=display">w_{t+1}^T = w_t^T - \alpha\nabla_wL(w) = w_t^T - \alpha\sum_{i=1}^N(y_i - h_w(x_i) )x_i</script><p> 其中，参数α叫学习率，就是每一步走多远，这个参数蛮关键的。如果设置的太多，那么很容易就在最优值附加徘徊，因为你步伐太大了。但如果设置的太小，那收敛速度就太慢了，向蜗牛一样，虽然会落在最优的点，但是这速度如果是猴年马月，我们也没这耐心啊。所以有的改进就是在这个学习率这个地方下刀子的。我开始迭代是，学习率大，慢慢的接近最优值的时候，我的学习率变小就可以了。</p>
 <h3 id="随机梯度下降SGD-stochastic-gradient-descent"><a href="#随机梯度下降SGD-stochastic-gradient-descent" class="headerlink" title="随机梯度下降SGD (stochastic gradient descent)"></a>随机梯度下降SGD (stochastic gradient descent)</h3><p>梯度下降算法在每次更新回归系数的时候都需要遍历整个数据集（计算整个数据集的回归误差），该方法对小数据集尚可。但当遇到有数十亿样本和成千上万的特征时，就有点力不从心了，它的计算复杂度太高。SGD则是每来一次样本进行一次计算：</p>
-<script type="math/tex; mode=display">w_{t+1}^T  = w_t^T - \alpha(y_i - h_w(x_i) )x_i</script><h3 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h3><h3 id="拟牛顿法"><a href="#拟牛顿法" class="headerlink" title="拟牛顿法"></a>拟牛顿法</h3><h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br>[2]<a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br>[3]<a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br>[4]<a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br>[5]<a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a></p>
+<script type="math/tex; mode=display">w_{t+1}^T  = w_t^T - \alpha(y_i - h_w(x_i) )x_i</script><h3 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h3><h4 id="牛顿法简介"><a href="#牛顿法简介" class="headerlink" title="牛顿法简介"></a>牛顿法简介</h4><p><strong>此方法用来寻找函数的零点，即\(f(x)=0\)的根</strong></p>
+<p>首先，选择一个接近函数\(f(x)\)零点的 \(x_0\)，计算相应的\(f(x_0)\)和切线斜率 \( f^\prime(x_0) \)（这里\(f^\prime\)表示函数 \(f\)的导数）。然后我们计算穿过点\( (x_0,f(x_0)) \)并且斜率为\( f^\prime(x_0) \)的直线和 \(x\)轴的交点的\(x\)坐标，也就是求如下方程的解：</p>
+<script type="math/tex; mode=display">0=(x-x_0)f\prime(x_0) +f(x_0)</script><p>我们将新求得的点的\(x\)坐标命名为\(x_1\)，通常 \(x_1\)会比\(x_0\)更接近方程\(f(x)=0\)的解。因此我们现在可以利用 \(x_1\)开始下一轮迭代。迭代公式可化简为如下所示：</p>
+<script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f(x_n)}{f^\prime(x_n)}</script><p>牛顿法迭代过程如下所示：</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif" alt="asdfsfd"></p>
+<h4 id="应用于最优化的牛顿法"><a href="#应用于最优化的牛顿法" class="headerlink" title="应用于最优化的牛顿法"></a>应用于最优化的牛顿法</h4><p>在上面介绍的牛顿法中, 通过迭代以求解可微函数\(f\)的零点的一种算法 (即求 \(x\)使得\(f(x)=0\)。<br>如果我们想要找到函数的最优解（即极值），就需要使函数的导数为零（即求 \(x\)使得\( f^\prime (x)=0 \)）<br>所以应用于最优化的牛顿法的迭代公式为:</p>
+<script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f^\prime(x_n)}{f^{\prime\prime}(x_n)}</script><p>根据wiki上的解释，从几何上说，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径。<br><img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Newton_optimization_vs_grad_descent.svg" width="300"><br>红色的牛顿法的迭代路径，绿色的是梯度下降法的迭代路径。</p>
+<!-- ### 拟牛顿法 -->
+<h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br>[2]<a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br>[3]<a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br>[4]<a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br>[5]<a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a><br>[6]<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">维基百科：牛顿法</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
           
@@ -575,7 +583,7 @@ h_w(x_i) = P(y=1|x_i)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T17:04:18+08:00">
                 2018-03-18
@@ -709,7 +717,7 @@ h_w(x_i) = P(y=1|x_i)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T20:29:14+08:00">
                 2018-03-14
@@ -853,7 +861,7 @@ h_w(x_i) = P(y=1|x_i)
                 <a href="/archives/">
               
                   <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">articles</span>
                 </a>
               </div>
             
@@ -903,7 +911,7 @@ h_w(x_i) = P(y=1|x_i)
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -911,7 +919,7 @@ h_w(x_i) = P(y=1|x_i)
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
