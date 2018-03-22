@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20140302234224515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvem91eHkwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/da/Newton_optimization_vs_grad_descent.svg">
-<meta property="og:updated_time" content="2018-03-22T03:53:29.583Z">
+<meta property="og:updated_time" content="2018-03-22T04:02:59.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逻辑斯蒂回归(Logistic Regression)总结">
 <meta name="twitter:description" content="逻辑斯蒂回归模型定义及来源logist分布逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数： f(x) = \frac{1}{1+e^{-x}} \tag1 sigmoid函数可以做回归也可以做分类。相比于线性回归，它有一个好处是不容易受极端值的影响。 线性回归而逻辑斯蒂回归模型模型的另一个则是来源于线性回归： g(x) = w_0x_0 +   w_1">
@@ -190,7 +190,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -264,7 +264,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T21:00:01+08:00">
                 2018-03-18
@@ -350,10 +350,11 @@ h_w(x_i) = P(y=1|x_i)
 <script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f(x_n)}{f^\prime(x_n)}</script><p>牛顿法迭代过程如下所示：</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif" alt="asdfsfd"></p>
 <h4 id="应用于最优化的牛顿法"><a href="#应用于最优化的牛顿法" class="headerlink" title="应用于最优化的牛顿法"></a>应用于最优化的牛顿法</h4><p>在上面介绍的牛顿法中, 通过迭代以求解可微函数\(f\)的零点的一种算法 (即求 \(x\)使得\(f(x)=0\)。<br>如果我们想要找到函数的最优解（即极值），就需要使函数的导数为零（即求 \(x\)使得\( f^\prime (x)=0 \)）<br>所以应用于最优化的牛顿法的迭代公式为:</p>
-<script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f^\prime(x_n)}{f^{\prime\prime}(x_n)}</script><p>根据wiki上的解释，从几何上说，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径。<br><img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Newton_optimization_vs_grad_descent.svg" width="300"><br>红色的牛顿法的迭代路径，绿色的是梯度下降法的迭代路径。</p>
+<script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f^\prime(x_n)}{f^{\prime\prime}(x_n)}</script><p>根据wiki上的解释，从几何上说，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径。[6]<br><img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Newton_optimization_vs_grad_descent.svg" width="300"><br>红色的牛顿法的迭代路径，绿色的是梯度下降法的迭代路径。</p>
 <!-- ### 拟牛顿法 -->
-<h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br>[2]<a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br>[3]<a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br>[4]<a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br>[5]<a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a><br>[6]<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">维基百科：牛顿法</a></p>
+<h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br>[2]<a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br>[3]<a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br>[4]<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">维基百科：牛顿法</a><br>[5]<a href="https://zh.wikipedia.org/wiki/%E6%87%89%E7%94%A8%E6%96%BC%E6%9C%80%E5%84%AA%E5%8C%96%E7%9A%84%E7%89%9B%E9%A0%93%E6%B3%95" target="_blank" rel="noopener">维基百科：应用于最优化的牛顿法</a><br>[6]<a href="https://www.zhihu.com/question/19723347/answer/14636244" target="_blank" rel="noopener">最优化问题中，牛顿法为什么比梯度下降法求解需要的迭代次数更少？ - 大饼土博的回答 - 知乎</a><br>[7]<a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br>[8]<a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 
       
     </div>
@@ -451,10 +452,10 @@ h_w(x_i) = P(y=1|x_i)
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table Des Matières
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Ensemble
+            Übersicht
           </li>
         </ul>
       
@@ -475,7 +476,7 @@ h_w(x_i) = P(y=1|x_i)
                 <a href="/archives/">
               
                   <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">articles</span>
+                  <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
@@ -541,7 +542,7 @@ h_w(x_i) = P(y=1|x_i)
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -549,7 +550,7 @@ h_w(x_i) = P(y=1|x_i)
 
 
 
-  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
