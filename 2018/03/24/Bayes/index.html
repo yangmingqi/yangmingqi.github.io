@@ -85,7 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/24/Bayes/index.html">
 <meta property="og:site_name" content="老杨的博客">
 <meta property="og:description" content="贝叶斯定理定理本身一目了然：\(P(A|B) = P(B|A) * P(A)/P(B)\) 用语言解释就是：在B出现的前提下,A出现的概率等于A和B都出现的概率除以B出现的概率。 换句话说就是后验概率和先验概率的关系。 例子假设一个学校里有60个男生和40个女生。女生有一半人穿裤子，另一半人穿裙子；所有男生穿裤子。一个人在远处随机看到了一个穿裤子的学生。那么这个学生是女生的概率是多少？[1] 使用">
-<meta property="og:updated_time" content="2018-03-24T12:10:00.419Z">
+<meta property="og:updated_time" content="2018-03-24T12:18:27.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="朴素贝叶斯">
 <meta name="twitter:description" content="贝叶斯定理定理本身一目了然：\(P(A|B) = P(B|A) * P(A)/P(B)\) 用语言解释就是：在B出现的前提下,A出现的概率等于A和B都出现的概率除以B出现的概率。 换句话说就是后验概率和先验概率的关系。 例子假设一个学校里有60个男生和40个女生。女生有一半人穿裤子，另一半人穿裙子；所有男生穿裤子。一个人在远处随机看到了一个穿裤子的学生。那么这个学生是女生的概率是多少？[1] 使用">
@@ -323,7 +323,8 @@ p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h1 id="�
 <script type="math/tex; mode=display">P(F_1,...,F_n|C) = \prod_{i=1}^n P(F_i|C)</script><p>这意味着上述假设下，类变量 \(C\)的条件分布可以表达为：</p>
 <script type="math/tex; mode=display">P(C|F_1,...,F_n) = \frac{1}{Z} P(C)\prod_{i=1}^n P(F_i|C)</script><p>其中\(Z\)(证据因子)是一个只依赖与\(F_1,…,F_n\)等的缩放因子，当特征变量的值已知时是一个常数。</p>
 <h2 id="从概率模型中构造分类器"><a href="#从概率模型中构造分类器" class="headerlink" title="从概率模型中构造分类器"></a>从概率模型中构造分类器</h2><p>讨论至此为止我们导出了独立分布特征模型，也就是朴素贝叶斯概率模型。朴素贝叶斯分类器包括了这种模型和相应的决策规则。一个普通的规则就是选出最有可能的那个：这就是大家熟知的最大后验概率（MAP）决策准则。相应的分类器便是如下定义的分类公式：</p>
-<script type="math/tex; mode=display">classify(f_1,...,f_n) = argmax_c P(C=c)\prod_{i=1}^nP(F_i=f_i|C=c)</script><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.sina.com.cn/s/blog_64827e4c0100lfqe.html" target="_blank" rel="noopener">理解贝叶斯,后验概率的最佳例子</a><br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8#cite_note-5" target="_blank" rel="noopener">维基百科：朴素贝叶斯分类器</a></p>
+<script type="math/tex; mode=display">classify(f_1,...,f_n) = argmax_c P(C=c)\prod_{i=1}^nP(F_i=f_i|C=c)</script><h1 id="后验最大化的含义（期望风险最小化）"><a href="#后验最大化的含义（期望风险最小化）" class="headerlink" title="后验最大化的含义（期望风险最小化）"></a>后验最大化的含义（期望风险最小化）</h1><h1 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h1><h2 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h2><p><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="noopener">最大似然估计</a></p>
+<h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.sina.com.cn/s/blog_64827e4c0100lfqe.html" target="_blank" rel="noopener">理解贝叶斯,后验概率的最佳例子</a><br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8#cite_note-5" target="_blank" rel="noopener">维基百科：朴素贝叶斯分类器</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 
@@ -360,6 +361,10 @@ p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h1 id="�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/24/CART/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -443,7 +448,7 @@ p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h1 id="�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -480,7 +485,7 @@ p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h1 id="�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#贝叶斯定理"><span class="nav-number">1.</span> <span class="nav-text">贝叶斯定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#朴素贝叶斯概率模型"><span class="nav-number">2.</span> <span class="nav-text">朴素贝叶斯概率模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从概率模型中构造分类器"><span class="nav-number">2.1.</span> <span class="nav-text">从概率模型中构造分类器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#贝叶斯定理"><span class="nav-number">1.</span> <span class="nav-text">贝叶斯定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#朴素贝叶斯概率模型"><span class="nav-number">2.</span> <span class="nav-text">朴素贝叶斯概率模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从概率模型中构造分类器"><span class="nav-number">2.1.</span> <span class="nav-text">从概率模型中构造分类器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后验最大化的含义（期望风险最小化）"><span class="nav-number">3.</span> <span class="nav-text">后验最大化的含义（期望风险最小化）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参数估计"><span class="nav-number">4.</span> <span class="nav-text">参数估计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#极大似然估计"><span class="nav-number">4.1.</span> <span class="nav-text">极大似然估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯估计（拉普拉斯平滑）"><span class="nav-number">4.2.</span> <span class="nav-text">贝叶斯估计（拉普拉斯平滑）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
