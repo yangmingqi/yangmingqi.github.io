@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -247,7 +247,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/24/CART/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/03/24/CART/" itemprop="url">决策树</a></h1>
         
 
         <div class="post-meta">
@@ -257,7 +257,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-24T20:11:59+08:00">
                 2018-03-24
@@ -299,7 +299,80 @@
       
         
           
-            
+            <h1 id="决策树引导"><a href="#决策树引导" class="headerlink" title="决策树引导"></a>决策树引导</h1><p>通俗来说，决策树分类的思想类似于找对象。现想象一个女孩的母亲要给这个女孩介绍男朋友，于是有了下面的对话：<a href="#jump">[5]</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">女儿：多大年纪了？</span><br><span class="line"></span><br><span class="line">母亲：26。</span><br><span class="line"></span><br><span class="line">女儿：长的帅不帅？</span><br><span class="line"></span><br><span class="line">母亲：挺帅的。</span><br><span class="line"></span><br><span class="line">女儿：收入高不？</span><br><span class="line"></span><br><span class="line">母亲：不算很高，中等情况。</span><br><span class="line"></span><br><span class="line">女儿：是公务员不？</span><br><span class="line"></span><br><span class="line">母亲：是，在税务局上班呢。</span><br><span class="line"></span><br><span class="line">女儿：那好，我去见见。</span><br></pre></td></tr></table></figure>
+<p>这个女孩的决策过程就是典型的分类树决策。相当于通过年龄、长相、收入和是否公务员对将男人分为两个类别：见和不见。假设这个女孩对男人的要求是：30岁以下、长相中等以上并且是高收入者或中等以上收入的公务员，那么这个可以用下图表示女孩的决策逻辑（声明：此决策树纯属为了写文章而YY的产物，没有任何根据，也不代表任何女孩的择偶倾向，请各位女同胞莫质问我^_^）：</p>
+<p><img src="https://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/34d255f282ae_B984/1_3.png" alt=""></p>
+<p>上图完整表达了这个女孩决定是否见一个约会对象的策略，其中绿色节点表示判断条件，橙色节点表示决策结果，箭头表示在一个判断条件在不同情况下的决策路径，图中红色箭头表示了上面例子中女孩的决策过程。</p>
+<p>这幅图基本可以算是一颗决策树，说它“基本可以算”是因为图中的判定条件没有量化，如收入高中低等等，还不能算是严格意义上的决策树，如果将所有条件量化，则就变成真正的决策树了。</p>
+<p>有了上面直观的认识，我们可以正式定义决策树了：</p>
+<p><strong>决策树（decision tree）是一个树结构（可以是二叉树或非二叉树）。其每个非叶节点表示一个特征属性上的测试，每个分支代表这个特征属性在某个值域上的输出，而每个叶节点存放一个类别。使用决策树进行决策的过程就是从根节点开始，测试待分类项中相应的特征属性，并按照其值选择输出分支，直到到达叶子节点，将叶子节点存放的类别作为决策结果。</strong></p>
+<h1 id="特征选取"><a href="#特征选取" class="headerlink" title="特征选取"></a>特征选取</h1><h2 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h2><h3 id="熵的定义"><a href="#熵的定义" class="headerlink" title="熵的定义"></a>熵的定义</h3><p>香农把随机变量X的熵值 Η定义如下:</p>
+<script type="math/tex; mode=display">H(X)=E[I(X)]=E[-\log(P(X)]</script><p>其中，P为X的概率质量函数（probability mass function），E为期望函数，而<strong>I(X)是X的信息量（又称为自信息），表示包含信息的多少</strong>。</p>
+<p>当取自有限的样本时，熵的公式可以表示为：</p>
+<script type="math/tex; mode=display">H(X)=\sum_i P(x_i)I(x_i)=-\sum_i P(x_i) \log P(x_i)</script><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>如英语有26个字母，假如每个字母在文章中出现次数平均的话，每个字母的讯息量为：<a href="#jump">[1]</a></p>
+<script type="math/tex; mode=display">I_e = -\log \frac{1}{26} =4.7</script><p>以日文五十音平假名作为相对范例，假设每个平假名日语文字在文章中出现的概率相等，每个平假名日语文字可携带的信息量为：</p>
+<script type="math/tex; mode=display">I_e = -\log \frac{1}{50} =5.64</script><p>而汉字常用的有2500个，假如每个汉字在文章中出现次数平均的话，每个汉字的信息量为：</p>
+<script type="math/tex; mode=display">I_e = -\log \frac{1}{2500} =11.3</script><p>实际上每个字母和每个汉字在文章中出现的次数并不平均，比方说较少见字母（如z）和罕用汉字就具有相对高的信息量。但上述计算提供了以下概念：使用书写单元越多的文字，每个单元所包含的讯息量越大。</p>
+<p><strong>熵是整个系统的平均消息量。熵越大，随机变量的不确定性就越大，所包含的信息就越多。</strong></p>
+<script type="math/tex; mode=display">H=\sum_{i=1}^n p_i I_e = -\sum_{i=1}^n p_i \log_2p_i</script><p>如果两个系统具有同样大的消息量，如一篇用不同文字写的同一文章，由于汉字的信息量较大，中文文章应用的汉字就比英文文章使用的字母要少。所以汉字印刷的文章要比其他应用总体数量少的字母印刷的文章要短。即使一个汉字占用两个字母的空间，汉字印刷的文章也要比英文字母印刷的用纸少。</p>
+<h3 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h3><p>如果\(H(Y|X=x)\)为变数\(Y\)在变数\(X\)取特定值\(x\)条件下的熵，那么\(H(Y|X)\)就是\(H(Y|X=x)\)在\(X\)取遍所有可能的\(x\)后取平均的结果。<a href="#jump">[2]</a></p>
+<script type="math/tex; mode=display">
+\begin{align}
+H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
+& = -\sum_x p(x) \sum_y p(y|x) \log p(y|x) \\\
+& = - \sum_{x,y} p(x,y) \log p(y|x) \\\
+& = - \sum_{x,y} p(x,y) \log \frac{p(x,y)}{p(x)} \\\
+& = \sum_{x,y} p(x,y) \log \frac{p(x)}{p(x,y)} \\\
+\end{align}</script><p>当且仅当\(Y\)的值完全由\(X\)确定时\(H(Y|X)=0\)。相反，当且仅当\(Y\)和 \(X\)为独立随机变数时\(H(Y|X)=H(Y)\)。</p>
+<h2 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>决策树最重要的概念就是信息增益，如果这个概念弄清楚了，那么怎么来选取特征作为决策树的节点就很好理解了。</p>
+<script type="math/tex; mode=display">g(Y,X) = H(Y)-H(Y|X)</script><p><strong>熵\(H(Y)\)：表示随机变量的不确定性。</strong></p>
+<p><strong>条件熵\(H(Y|X)\)：在一个条件下，随机变量的不确定性。</strong></p>
+<p><strong>信息增益\(g(Y,X)\)：熵 - 条件熵</strong></p>
+<p><strong>信息增益在一个条件下，信息不确定性减少的程度</strong></p>
+<p>通俗地讲，X(明天下雨)是一个随机变量，X的熵可以算出来， Y(明天阴天)也是随机变量，在阴天情况下下雨的信息熵我们如果也知道的话（此处需要知道其联合概率分布或是通过数据估计）即是条件熵。<a href="#jump">[3]</a></p>
+<p>两者相减就是信息增益！原来明天下雨例如信息熵是2，条件熵是0.01（因为如果是阴天就下雨的概率很大，信息就少了），这样相减后为1.99，在获得阴天这个信息后，下雨信息不确定性减少了1.99！是很多的！所以信息增益大！也就是说，阴天这个信息对下雨来说是很重要的！</p>
+<p>所以在特征选择的时候常常用信息增益，如果IG（信息增益大）的话那么这个特征对于分类来说很关键</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>我们有如下12组数据：<a href="#jump">[4]</a></p>
+<p><img src="https://pic1.zhimg.com/80/v2-ccf99fcbded18b80b8d9d8553be1eec6_hd.jpg" alt=""></p>
+<p>嫁与不嫁的个数为均为6个，占1/2，可以求得随机变量Y（嫁与不嫁）的信息熵为：</p>
+<script type="math/tex; mode=display">H(Y=嫁) =-( \frac{1}{2} \log \frac{1}{2} + \frac{1}{2} \log \frac{1}{2} ) = 0.301</script><p>现在假如我知道了一个男生的身高信息。身高有三个可能的取值{矮，中，高}</p>
+<p>矮包括{1,2,3,5,6,11,12}，嫁的个数为1个，不嫁的个数为6个，\( P(Y=嫁|X=矮)=\frac{1}{7} ，  P(Y=不嫁|X=矮)=\frac{6}{7} \)</p>
+<p>中包括{8,9} ，嫁的个数为2个，不嫁的个数为0个</p>
+<p>高包括{4,7,10}，嫁的个数为3个，不嫁的个数为0个</p>
+<p>所以：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&H(Y|X=矮) =-( \frac{1}{7} \log \frac{1}{7} + \frac{6}{7} \log \frac{6}{7} ) = 0.178 \\\
+&H(Y|X=中) = -(1\log1+0) = 0 \\\
+&H(Y|X=高) = -(1\log1+0) = 0  \\\
+\end{align}</script><p>又因为</p>
+<script type="math/tex; mode=display">p(X = 矮) = \frac{7}{12},p(X =中) = \frac{2}{12},p(X=高) = \frac{3}{12}</script><p>则可以得出条件熵为</p>
+<script type="math/tex; mode=display">H(Y|X) = \frac{7}{12} \times 0.178+ \frac{2}{12} \times 0+\frac{3}{12} \times 0</script><p>那么我们知道信息熵与条件熵相减就是我们的信息增益，为:</p>
+<script type="math/tex; mode=display">0.301-0.103=0.198</script><p>我们可以知道，本来如果我对一个男生什么都不知道的话，<strong>作为他的女朋友决定是否嫁给他的不确定性有0.301这么大</strong>。</p>
+<p><strong>当我们知道男朋友的身高信息后，不确定度减少了0.198，不确定度只有0.103这么大了</strong>，（如果不确定是0就最好了，我肯定嫁给他，因为他好的没有悬念，哈哈）.也就是说，身高这个特征对于我们广大女生同学来说，决定嫁不嫁给自己的男朋友是很重要的。</p>
+<p>至少我们知道了身高特征后，我们原来没有底的心里（0.301）已经明朗一半多了，减少0.198了（大于原来的一半了）。</p>
+<p>那么这就类似于非诚勿扰节目里面的桥段了，请问女嘉宾，你只能知道男生的一个特征。请问你想知道哪个特征。</p>
+<p>假如其它特征我也全算了，信息增益是身高这个特征最大。那么我就可以说，孟非哥哥，我想知道男嘉宾的一个特征是身高特征。因为它在这些特征中，对于我挑夫君是最重要的，信息增益是最大的，知道了这个特征，嫁与不嫁的不确定度减少的是最多的。</p>
+<h3 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h3><p>以信息增益作为划分训练数据集的特征，存在偏向于选择取值较多的特征的问题。使用信息增益比（informatio gain ratio）可以对这一问题进行校正。</p>
+<script type="math/tex; mode=display">g_R(Y,X) = \frac{g(Y,X)}{H_X(Y)}</script><h1 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h1><h2 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h2><p>ID3算法就是在每次需要分裂时，计算每个属性的增益率，然后选择增益率最大的属性进行分裂。下面我们继续用SNS社区中不真实账号检测的例子说明如何使用ID3算法构造决策树。为了简单起见，我们假设训练集合包含10个元素：<a href="#jump">[5]</a><br><img src="https://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/34d255f282ae_B984/2_3.png" alt=""><br>其中s、m和l分别表示小、中和大。</p>
+<p>设L、F、H和R表示日志密度、好友密度、是否使用真实头像和账号是否真实，下面计算各属性的信息增益。</p>
+<script type="math/tex; mode=display">H(D) = -0.7\log 0.7 -0.3\log 0.3 = 0.879</script><script type="math/tex; mode=display">H(D|L)=0.3 \times (- \frac{1}{3} \log \frac{1}{3} - \frac{2}{3} \log \frac{2}{3}) +0.4 \times (- \frac{1}{4} \log \frac{1}{4} - \frac{3}{4} \log \frac{3}{4}) + 0.3 \times (- \frac{0}{3} \log \frac{0}{3} - \frac{3}{3} \log \frac{3}{3}) = 0.603</script><script type="math/tex; mode=display">gain(L) = H(D)-H(D|L)</script><p>因此日志密度的信息增益是0.276。</p>
+<p>用同样方法得到H和F的信息增益分别为0.033和0.553。</p>
+<p> 因为F具有最大的信息增益，所以第一次分裂选择F为分裂属性，分裂后的结果如下图表示：<br><img src="https://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/34d255f282ae_B984/3_3.png" alt=""><br>在上图的基础上，再递归使用这个方法计算子节点的分裂属性，最终就可以得到整个决策树。</p>
+<p>上面为了简便，将特征属性离散化了，其实日志密度和好友密度都是连续的属性。对于特征属性为连续值，可以如此使用ID3算法：</p>
+<p>先将D中元素按照特征属性排序，则每两个相邻元素的中间点可以看做潜在分裂点，从第一个潜在分裂点开始，分裂D并计算两个集合的期望信息，具有最小期望信息的点称为这个属性的最佳分裂点，其信息期望作为此属性的信息期望。</p>
+<h2 id="C4-5算法"><a href="#C4-5算法" class="headerlink" title="C4.5算法"></a>C4.5算法</h2><p>ID3算法存在一个问题，就是偏向于多值属性，例如，如果存在唯一标识属性ID，则ID3会选择它作为分裂属性，这样虽然使得划分充分纯净，但这种划分对分类几乎毫无用处。ID3的后继算法C4.5使用<strong>信息增益比</strong>，试图克服这个偏倚。</p>
+<h1 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h1><p>剪枝是决策树学习算法对付“过拟合”的主要手段。剪枝有两种：</p>
+<p><strong>预剪枝</strong>——在构造过程中，当某个节点满足剪枝条件，则直接停止此分支的构造。</p>
+<p><strong>后剪枝</strong>——先构造完成完整的决策树，再通过某些条件遍历树进行剪枝。</p>
+<p>后剪枝决策树通常比于简直决策树保留了更多的分支。一般情况下，后剪枝决策树的欠拟合风险很小，泛化性能往往优于预剪枝决策树</p>
+<h1 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h1><p><a href="http://www.cnblogs.com/xingshansi/p/6847334.html" target="_blank" rel="noopener">http://www.cnblogs.com/xingshansi/p/6847334.html</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料<span id="jump"></span></h1><p>[1]<a href="https://zh.wikipedia.org/wiki/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">维基百科：熵 (信息论)</a>)<br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9D%A1%E4%BB%B6%E7%86%B5" target="_blank" rel="noopener">维基百科：条件熵</a><br>[3]<a href="https://www.zhihu.com/question/22104055/answer/67014456" target="_blank" rel="noopener">信息增益到底怎么理解呢？ - Kay Zhou的回答 - 知乎</a><br>[4]<a href="http://zhuanlan.zhihu.com/p/26596036" target="_blank" rel="noopener">通俗理解决策树算法中的信息增益 - 忆臻的文章 - 知乎</a><br>[5]<a href="http://www.cnblogs.com/leoo2sk/archive/2010/09/19/decision-tree.html" target="_blank" rel="noopener">算法杂货铺——分类算法之决策树(Decision tree)</a><br>李航 (2012) 统计学习方法. 清华大学出版社, 北京.</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
           
         
       
@@ -376,7 +449,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-24T18:33:13+08:00">
                 2018-03-24
@@ -418,23 +491,53 @@
       
         
           
-            <h1 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h1><p>定理本身一目了然：\(P(A|B) = P(B|A) * P(A)/P(B)\)</p>
+            <h1 id="朴素贝叶斯分类算法"><a href="#朴素贝叶斯分类算法" class="headerlink" title="朴素贝叶斯分类算法"></a>朴素贝叶斯分类算法</h1><h2 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h2><p>定理本身一目了然：\(P(A|B) = P(B|A) * P(A)/P(B)\)</p>
 <p>用语言解释就是：在B出现的前提下,A出现的概率等于A和B都出现的概率除以B出现的概率。</p>
 <p>换句话说就是后验概率和先验概率的关系。</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>假设一个学校里有60个男生和40个女生。女生有一半人穿裤子，另一半人穿裙子；所有男生穿裤子。一个人在远处随机看到了一个穿裤子的学生。那么这个学生是女生的概率是多少？[1]</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>假设一个学校里有60个男生和40个女生。女生有一半人穿裤子，另一半人穿裙子；所有男生穿裤子。一个人在远处随机看到了一个穿裤子的学生。那么这个学生是女生的概率是多少？<a href="#jump">[1]</a></p>
 <p>使用贝叶斯定理，事件A是看到女生，事件B是看到一个穿裤子的学生。我们所要计算的是\(P(A|B)\)。</p>
 <p><strong>\(P(A)\)是忽略其它因素，看到女生的概率，在这里是40%</strong><br><strong>\(P(A’)\)是忽略其它因素，看到不是女生（即看到男生）的概率，在这里是60%</strong><br><strong>\(P(B|A)\)是女生穿裤子的概率，在这里是50%</strong><br><strong>\(P(B|A’)\)是男生穿裤子的概率，在这里是100%</strong><br><strong>\(P(B)\)是忽略其它因素，学生穿裤子的概率，\(P(B) = P(B|A)P(A)+P(B|A’)P(A’)\)，在这里是0.5×0.4+1×0.6 = 0.8.</strong></p>
 <p>根据贝叶斯定理，我们计算处后验概率\(P(A|B)\)</p>
 <script type="math/tex; mode=display">
-p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h1 id="朴素贝叶斯概率模型"><a href="#朴素贝叶斯概率模型" class="headerlink" title="朴素贝叶斯概率模型"></a>朴素贝叶斯概率模型</h1><p>理论上，概率模型分类器是一个条件概率模型。[2]</p>
+p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h2 id="朴素贝叶斯概率模型"><a href="#朴素贝叶斯概率模型" class="headerlink" title="朴素贝叶斯概率模型"></a>朴素贝叶斯概率模型</h2><p>理论上，概率模型分类器是一个条件概率模型。<a href="#jump">[2]</a></p>
 <script type="math/tex; mode=display">P(C|F_1,...,F_n)</script><p>独立的类别变量 \(C\)有若干类别，条件依赖于若干特征变量\(F_1,…,F_n\)。 贝叶斯定理有以下式子：</p>
 <script type="math/tex; mode=display">P(C|F_1,...,F_n) = \frac{P(C)P(F_1,...,F_n|C)}{P(F_1,...,F_n)}</script><p>用朴素的语言可以表达为：</p>
 <script type="math/tex; mode=display">posterior = \frac{prior\times likehood}{evidence}</script><p>实际中，我们只关心分式中的分子部分，因为分母不依赖于\(C\)而且特征 \(F_i\)的值是给定的，于是分母可以认为是一个常数。这样分子就等价于联合分布模型\(P(C,F_1,…,F_n) \)<br>现在“朴素”的条件独立假设开始发挥作用:假设每个特征\(F_i\)对于其他特征 \(F_j\), \(i\neq j\)是条件独立的。这就意味着</p>
 <script type="math/tex; mode=display">P(F_1,...,F_n|C) = \prod_{i=1}^n P(F_i|C)</script><p>这意味着上述假设下，类变量 \(C\)的条件分布可以表达为：</p>
 <script type="math/tex; mode=display">P(C|F_1,...,F_n) = \frac{1}{Z} P(C)\prod_{i=1}^n P(F_i|C)</script><p>其中\(Z\)(证据因子)是一个只依赖与\(F_1,…,F_n\)等的缩放因子，当特征变量的值已知时是一个常数。</p>
 <h2 id="从概率模型中构造分类器"><a href="#从概率模型中构造分类器" class="headerlink" title="从概率模型中构造分类器"></a>从概率模型中构造分类器</h2><p>讨论至此为止我们导出了独立分布特征模型，也就是朴素贝叶斯概率模型。朴素贝叶斯分类器包括了这种模型和相应的决策规则。一个普通的规则就是选出最有可能的那个：这就是大家熟知的最大后验概率（MAP）决策准则。相应的分类器便是如下定义的分类公式：</p>
-<script type="math/tex; mode=display">classify(f_1,...,f_n) = argmax_c P(C=c)\prod_{i=1}^nP(F_i=f_i|C=c)</script><h1 id="后验最大化的含义（期望风险最小化）"><a href="#后验最大化的含义（期望风险最小化）" class="headerlink" title="后验最大化的含义（期望风险最小化）"></a>后验最大化的含义（期望风险最小化）</h1><h1 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h1><h2 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h2><p><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="noopener">最大似然估计</a></p>
-<h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.sina.com.cn/s/blog_64827e4c0100lfqe.html" target="_blank" rel="noopener">理解贝叶斯,后验概率的最佳例子</a><br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8#cite_note-5" target="_blank" rel="noopener">维基百科：朴素贝叶斯分类器</a></p>
+<script type="math/tex; mode=display">classify(f_1,...,f_n) = arg \max_c P(C=c)\prod_{i=1}^nP(F_i=f_i|C=c)</script><h2 id="后验最大化的含义（期望风险最小化）"><a href="#后验最大化的含义（期望风险最小化）" class="headerlink" title="后验最大化的含义（期望风险最小化）"></a>后验最大化的含义（期望风险最小化）</h2><p>在选择0-1损失函数的情况下，期望风险指的是<a href="#jump">[3]</a></p>
+<script type="math/tex; mode=display">L(Y,f(X))=
+\begin{cases}
+1, &Y\neq f(X)  \\\
+0, &Y= f(X)
+\end{cases}</script><p>式中\(f(X)\)是分类决策函数，这是，期望风险函数是：</p>
+<script type="math/tex; mode=display">R_{exp}(f) = E[L(Y,f(X))]</script><p><strong>期望风险函数指的是预期与实际结果不一样个数的期望</strong></p>
+<p>期望是对联合分布\(P(X,Y)\)取的，由此取条件期望：</p>
+<script type="math/tex; mode=display">R_{exp}(f) = E_x \sum_{k=1}^K [L(c_k,f(X)]P(c_k|X)</script><p>为了使经验风险最小化，只需对\(X=x\)逐个极小化，由此得到：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f(x) &= arg \min_y \sum_{k=1}^{K}L(c_k,y)P(c_k|X=x) \\\
+& = arg \min_y \sum_{k=1}^{K}P(y \neq c_k|X=x) \tag1
+\\\
+& = arg \min_y \sum_{k=1}^{K}(1-P(y = c_k|X=x)) \\\
+& = arg \max_y \sum_{k=1}^{K}P(y = c_k|X=x) \tag2\\\
+\end{align}</script><p><strong>\((1)\)表示使预期与结果不一致的个数最少,\((2)\)表示使预期与结果一致的个数最多。两式表达的意思一样</strong></p>
+<p>这样一来，根据<strong>期望风险最小化准则</strong>就得到了<strong>后验概率最大化准则</strong>：</p>
+<script type="math/tex; mode=display">f(x) = arg \max_{c_k} P(c_k|X=x)</script><h2 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h2><h3 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h3><p><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="noopener">维基百科：最大似然估计</a></p>
+<p><a href="https://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">详解最大似然估计（MLE）、最大后验概率估计（MAP），以及贝叶斯公式的理解</a></p>
+<h3 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h3><h1 id="贝叶斯方法的优缺点-6"><a href="#贝叶斯方法的优缺点-6" class="headerlink" title="贝叶斯方法的优缺点[6]"></a>贝叶斯方法的优缺点<a href="#jump">[6]</a></h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
+<li>对待预测样本进行预测，过程简单速度快(想想邮件分类的问题，预测就是分词后进行概率乘积，在log域直接做加法更快)。</li>
+<li>对于多分类问题也同样很有效，复杂度也不会有大程度上升。</li>
+<li>在分布独立这个假设成立的情况下，贝叶斯分类器效果奇好，会略胜于逻辑回归，同时我们需要的样本量也更少一点。</li>
+<li>对于类别类的输入特征变量，效果非常好。对于数值型变量特征，我们是默认它符合正态分布的。</li>
+</ol>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
+<li>对于测试集中的一个类别变量特征，如果在训练集里没见过，直接算的话概率就是0了，预测功能就失效了。使用平滑操作可以缓解这个问题，最常见的平滑技术是拉普拉斯估测。</li>
+<li>那个…咳咳，朴素贝叶斯算出的概率结果，比较大小还凑合，实际物理含义…恩，别太当真。</li>
+<li>朴素贝叶斯有分布独立的假设前提，而现实生活中这些predictor很难是完全独立的。</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料<span id="jump"></span></h1><p>[1]<a href="http://blog.sina.com.cn/s/blog_64827e4c0100lfqe.html" target="_blank" rel="noopener">理解贝叶斯,后验概率的最佳例子</a><br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8#cite_note-5" target="_blank" rel="noopener">维基百科：朴素贝叶斯分类器</a><br>[3]李航 (2012) 统计学习方法. 清华大学出版社, 北京.<br>[4]<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="noopener">维基百科：最大似然估计</a><br>[5]<a href="https://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">详解最大似然估计（MLE）、最大后验概率估计（MAP），以及贝叶斯公式的理解</a><br>[6][NLP系列(4)_朴素贝叶斯实战与进阶][<a href="https://blog.csdn.net/han_xiaoyang/article/details/50629608" target="_blank" rel="noopener">https://blog.csdn.net/han_xiaoyang/article/details/50629608</a>]</p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 
@@ -515,7 +618,7 @@ p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h1 id="�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T10:20:46+08:00">
                 2018-03-20
@@ -557,7 +660,7 @@ p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h1 id="�
       
         
           
-            <h1 id="对拉格朗日乘子法的直观理解"><a href="#对拉格朗日乘子法的直观理解" class="headerlink" title="对拉格朗日乘子法的直观理解"></a>对拉格朗日乘子法的直观理解</h1><p>假如你面前有一座山，山上有一条复杂的小路，如果你爬山的时候只能顺着小路走，那么什么时候你发现自己到了某个至高点呢？很明显，当你发现自己不论是往前走，还是往后退时，高度总是下降的，那么这时你就位于一个局部的最高点了。[1]<br><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/LagrangeMultipliers3D.png" width="450"></p>
+            <h1 id="对拉格朗日乘子法的直观理解"><a href="#对拉格朗日乘子法的直观理解" class="headerlink" title="对拉格朗日乘子法的直观理解"></a>对拉格朗日乘子法的直观理解</h1><p>假如你面前有一座山，山上有一条复杂的小路，如果你爬山的时候只能顺着小路走，那么什么时候你发现自己到了某个至高点呢？很明显，当你发现自己不论是往前走，还是往后退时，高度总是下降的，那么这时你就位于一个局部的最高点了。<a href="#jump">[1]</a><br><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/LagrangeMultipliers3D.png" width="450"></p>
 <h1 id="拉格朗日乘子法的数学原理"><a href="#拉格朗日乘子法的数学原理" class="headerlink" title="拉格朗日乘子法的数学原理"></a>拉格朗日乘子法的数学原理</h1><p>经典拉格朗日乘子法是下面的优化问题：</p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -586,8 +689,8 @@ g(x,y)=0
 \nabla_{\lambda}L(x,y,\lambda) = g(x,y)
 \end{cases} \tag 4</script><p>即若令拉格朗日函数的梯度为零，即令(4)式为零，即可得到方程(2)，虽然\( \lambda \)符号相反但不影响。</p>
 <h1 id="系数-lambda-作用"><a href="#系数-lambda-作用" class="headerlink" title="系数\( \lambda \)作用"></a>系数\( \lambda \)作用</h1><p>为了消除正负号可能对读者带来的困扰，我们对(2)和(4)做如下变化</p>
-<script type="math/tex; mode=display">|\lambda| = |\frac{\nabla f(x)}{\nabla g(x)}| \tag5</script><p>可以发现，当\( |\lambda| \)越小，\( \nabla g(x) \)的模就越大于\( \nabla f(x) \)。极端情况下，\( |\lambda| \rightarrow 0\)，此时\( |\nabla g(x)|  \rightarrow \infty  \)。这意味着在\(x\)点，\( g(x) \)几乎是垂直的，对增量非常敏感：当最优值不小心变一点点，条件\( g(x)=0 \)将严重偏离；若\( |\lambda| \)很大，\( g(x) \)几乎是水平的，则其对增量不敏感（若\( g(x) \)的轻微偏离不会造成太大的损失，可以适当牺牲约束条件的精确性，来换取更优的解）。<br>换句话说，\( |\lambda| \)越小，其求得的结果灵敏度越高，反之越低；可以说\( |\lambda| \)是衡量最优解灵敏度的一种方法。（当然也可以直接求\( \nabla g(x) \)来衡量灵敏度，这样更绝对一点）[2]</p>
-<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>设一个具体的例子，我们需要求下列问题[3]:</p>
+<script type="math/tex; mode=display">|\lambda| = |\frac{\nabla f(x)}{\nabla g(x)}| \tag5</script><p>可以发现，当\( |\lambda| \)越小，\( \nabla g(x) \)的模就越大于\( \nabla f(x) \)。极端情况下，\( |\lambda| \rightarrow 0\)，此时\( |\nabla g(x)|  \rightarrow \infty  \)。这意味着在\(x\)点，\( g(x) \)几乎是垂直的，对增量非常敏感：当最优值不小心变一点点，条件\( g(x)=0 \)将严重偏离；若\( |\lambda| \)很大，\( g(x) \)几乎是水平的，则其对增量不敏感（若\( g(x) \)的轻微偏离不会造成太大的损失，可以适当牺牲约束条件的精确性，来换取更优的解）。<br>换句话说，\( |\lambda| \)越小，其求得的结果灵敏度越高，反之越低；可以说\( |\lambda| \)是衡量最优解灵敏度的一种方法。（当然也可以直接求\( \nabla g(x) \)来衡量灵敏度，这样更绝对一点）<a href="#jump">[2]</a></p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>设一个具体的例子，我们需要求下列问题<a href="#jump">[3]</a>:</p>
 <script type="math/tex; mode=display">
 \begin{align}
 \max_{x,y}f(x,y) = x^2y \\\
@@ -604,7 +707,7 @@ x^2+2\lambda y=0\\\
 x^2+y^2-3=0
 \end{cases}</script><p>根据上式，我们可以解得\( (x,y,\lambda) \)为：</p>
 <script type="math/tex; mode=display">(\pm\sqrt{2},1,-1);(\pm\sqrt{2},-1,1);(0,\pm\sqrt{3},0)</script><p>根据几个不同的解带入\( f(x,y) \)得到，2，-2，0，也就是我们需要的最大值，最小值，对应的直观图像解释如上图图所示（<strong>非常直观的展现约束和等高线的含义</strong>）</p>
-<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p>[1] <a href="http://blog.csdn.net/unoboros/article/details/29363223" target="_blank" rel="noopener">一种对拉格朗日乘子的直观理解</a><br>[2] <a href="http://blog.csdn.net/u014792304/article/details/78396955" target="_blank" rel="noopener">拉格朗日乘子法（Lagrange Multiplier）详解以及乘子lambda的意义</a><br>[3]<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/" target="_blank" rel="noopener">【直观详解】拉格朗日乘法和KKT条件</a><br>[4]<a href="https://zhuanlan.zhihu.com/p/26514613" target="_blank" rel="noopener">浅谈最优化问题的KKT条件</a></p>
+<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：<span id="jump"></span></h1><p>[1] <a href="http://blog.csdn.net/unoboros/article/details/29363223" target="_blank" rel="noopener">一种对拉格朗日乘子的直观理解</a><br>[2] <a href="http://blog.csdn.net/u014792304/article/details/78396955" target="_blank" rel="noopener">拉格朗日乘子法（Lagrange Multiplier）详解以及乘子lambda的意义</a><br>[3]<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/" target="_blank" rel="noopener">【直观详解】拉格朗日乘法和KKT条件</a><br>[4]<a href="https://zhuanlan.zhihu.com/p/26514613" target="_blank" rel="noopener">浅谈最优化问题的KKT条件</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
           
         
@@ -682,7 +785,7 @@ x^2+y^2-3=0
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T21:00:01+08:00">
                 2018-03-18
@@ -729,7 +832,7 @@ x^2+y^2-3=0
 <p>sigmoid函数可以做回归也可以做分类。相比于线性回归，它有一个好处是不容易受极端值的影响。<br><img src="http://7xkmdr.com1.z0.glb.clouddn.com/lr5.jpg" width="600"></p>
 <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>而逻辑斯蒂回归模型模型的另一个则是来源于线性回归：</p>
 <script type="math/tex; mode=display">g(x) = w_0x_0 +   w_1x_1  + ··· +  w_nx_n = w^Tx \tag2</script><p>把两者组合起来，对线性回归的结果加上一个逻辑斯蒂函数，就是我们说的逻辑斯蒂回归：</p>
-<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-g(x)}} = \frac{1}{1+e^{-w^Tx}} = \frac{e^{w^Tx}}{1+e^{w^Tx}} \tag3</script><p>logistic回归就是一个线性分类模型，它与线性回归的不同点在于：为了将线性回归输出的很大范围的数，例如从负无穷到正无穷，压缩到0和1之间，这样的输出值表达为“可能性”才能说服广大民众。当然了，把大值压缩到这个范围还有个很好的好处，就是可以消除特别冒尖的变量的影响（不知道理解的是否正确）。而实现这个伟大的功能其实就只需要平凡一举，也就是在输出加一个logistic函数。另外，对于二分类来说，可以简单的认为：如果样本x属于正类的概率大于0.5，那么就判定它是正类，否则就是负类。[1]<br><img src="http://img.blog.csdn.net/20140302234224515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvem91eHkwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="450"><br><strong>逻辑回归的成功之处在于，将原本输出结果范围可以非常大的\(w^Tx\) 通过sigmoid函数映射到(0,1)，从而完成概率的估测。</strong></p>
+<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-g(x)}} = \frac{1}{1+e^{-w^Tx}} = \frac{e^{w^Tx}}{1+e^{w^Tx}} \tag3</script><p>logistic回归就是一个线性分类模型，它与线性回归的不同点在于：为了将线性回归输出的很大范围的数，例如从负无穷到正无穷，压缩到0和1之间，这样的输出值表达为“可能性”才能说服广大民众。当然了，把大值压缩到这个范围还有个很好的好处，就是可以消除特别冒尖的变量的影响（不知道理解的是否正确）。而实现这个伟大的功能其实就只需要平凡一举，也就是在输出加一个logistic函数。另外，对于二分类来说，可以简单的认为：如果样本x属于正类的概率大于0.5，那么就判定它是正类，否则就是负类。<a href="#jump">[1]</a><br><img src="http://img.blog.csdn.net/20140302234224515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvem91eHkwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="450"><br><strong>逻辑回归的成功之处在于，将原本输出结果范围可以非常大的\(w^Tx\) 通过sigmoid函数映射到(0,1)，从而完成概率的估测。</strong></p>
 <h1 id="二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导"><a href="#二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导" class="headerlink" title="二项逻辑斯蒂回归( binomial logistic regression)模型与推导"></a>二项逻辑斯蒂回归( binomial logistic regression)模型与推导</h1><h2 id="二项逻辑斯蒂回归模型"><a href="#二项逻辑斯蒂回归模型" class="headerlink" title="二项逻辑斯蒂回归模型"></a>二项逻辑斯蒂回归模型</h2><p>二项回归模型形式表示如下:</p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -760,9 +863,9 @@ h_w(x_i) = P(y=1|x_i)
 <script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f(x_n)}{f^\prime(x_n)}</script><p>牛顿法迭代过程如下所示：</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif" alt="asdfsfd"></p>
 <h4 id="应用于最优化的牛顿法"><a href="#应用于最优化的牛顿法" class="headerlink" title="应用于最优化的牛顿法"></a>应用于最优化的牛顿法</h4><p>在上面介绍的牛顿法中, 通过迭代以求解可微函数\(f\)的零点的一种算法 (即求 \(x\)使得\(f(x)=0\)。<br>如果我们想要找到函数的最优解（即极值），就需要使函数的导数为零（即求 \(x\)使得\( f^\prime (x)=0 \)）<br>所以应用于最优化的牛顿法的迭代公式为:</p>
-<script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f^\prime(x_n)}{f^{\prime\prime}(x_n)}</script><p>根据wiki上的解释，从几何上说，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径。[6]<br><img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Newton_optimization_vs_grad_descent.svg" width="300"><br>红色的牛顿法的迭代路径，绿色的是梯度下降法的迭代路径。</p>
+<script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f^\prime(x_n)}{f^{\prime\prime}(x_n)}</script><p>根据wiki上的解释，从几何上说，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径。<a href="#jump">[6]</a><br><img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Newton_optimization_vs_grad_descent.svg" width="300"><br>红色的牛顿法的迭代路径，绿色的是梯度下降法的迭代路径。</p>
 <!-- ### 拟牛顿法 -->
-<h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br>[2]<a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br>[3]<a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br>[4]<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">维基百科：牛顿法</a><br>[5]<a href="https://zh.wikipedia.org/wiki/%E6%87%89%E7%94%A8%E6%96%BC%E6%9C%80%E5%84%AA%E5%8C%96%E7%9A%84%E7%89%9B%E9%A0%93%E6%B3%95" target="_blank" rel="noopener">维基百科：应用于最优化的牛顿法</a><br>[6]<a href="https://www.zhihu.com/question/19723347/answer/14636244" target="_blank" rel="noopener">最优化问题中，牛顿法为什么比梯度下降法求解需要的迭代次数更少？ - 大饼土博的回答 - 知乎</a><br>[7]<a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br>[8]<a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a></p>
+<h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料<span id="jump"></span></h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br>[2]<a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br>[3]<a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br>[4]<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">维基百科：牛顿法</a><br>[5]<a href="https://zh.wikipedia.org/wiki/%E6%87%89%E7%94%A8%E6%96%BC%E6%9C%80%E5%84%AA%E5%8C%96%E7%9A%84%E7%89%9B%E9%A0%93%E6%B3%95" target="_blank" rel="noopener">维基百科：应用于最优化的牛顿法</a><br>[6]<a href="https://www.zhihu.com/question/19723347/answer/14636244" target="_blank" rel="noopener">最优化问题中，牛顿法为什么比梯度下降法求解需要的迭代次数更少？ - 大饼土博的回答 - 知乎</a><br>[7]<a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br>[8]<a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 
@@ -842,7 +945,7 @@ h_w(x_i) = P(y=1|x_i)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T17:04:18+08:00">
                 2018-03-18
@@ -976,7 +1079,7 @@ h_w(x_i) = P(y=1|x_i)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T20:29:14+08:00">
                 2018-03-14
@@ -1120,7 +1223,7 @@ h_w(x_i) = P(y=1|x_i)
                 <a href="/archives/">
               
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
@@ -1170,7 +1273,7 @@ h_w(x_i) = P(y=1|x_i)
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 

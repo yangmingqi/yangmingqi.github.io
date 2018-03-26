@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/b/bf/LagrangeMultipliers2D.svg">
 <meta property="og:image" content="https://qph.ec.quoracdn.net/main-qimg-353636823f9a407455d4685c63639d04">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/Lagrange_simple_1.png">
-<meta property="og:updated_time" content="2018-03-20T13:13:27.249Z">
+<meta property="og:updated_time" content="2018-03-25T08:30:30.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日乘子法">
 <meta name="twitter:description" content="对拉格朗日乘子法的直观理解假如你面前有一座山，山上有一条复杂的小路，如果你爬山的时候只能顺着小路走，那么什么时候你发现自己到了某个至高点呢？很明显，当你发现自己不论是往前走，还是往后退时，高度总是下降的，那么这时你就位于一个局部的最高点了。[1] 拉格朗日乘子法的数学原理经典拉格朗日乘子法是下面的优化问题：  \begin{align} \max_{x,y}f(x,y) \\\ s.t.g(x,y">
@@ -189,7 +189,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -199,7 +199,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -263,7 +263,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T10:20:46+08:00">
                 2018-03-20
@@ -313,7 +313,7 @@
       
 
       
-        <h1 id="对拉格朗日乘子法的直观理解"><a href="#对拉格朗日乘子法的直观理解" class="headerlink" title="对拉格朗日乘子法的直观理解"></a>对拉格朗日乘子法的直观理解</h1><p>假如你面前有一座山，山上有一条复杂的小路，如果你爬山的时候只能顺着小路走，那么什么时候你发现自己到了某个至高点呢？很明显，当你发现自己不论是往前走，还是往后退时，高度总是下降的，那么这时你就位于一个局部的最高点了。[1]<br><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/LagrangeMultipliers3D.png" width="450"></p>
+        <h1 id="对拉格朗日乘子法的直观理解"><a href="#对拉格朗日乘子法的直观理解" class="headerlink" title="对拉格朗日乘子法的直观理解"></a>对拉格朗日乘子法的直观理解</h1><p>假如你面前有一座山，山上有一条复杂的小路，如果你爬山的时候只能顺着小路走，那么什么时候你发现自己到了某个至高点呢？很明显，当你发现自己不论是往前走，还是往后退时，高度总是下降的，那么这时你就位于一个局部的最高点了。<a href="#jump">[1]</a><br><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/LagrangeMultipliers3D.png" width="450"></p>
 <h1 id="拉格朗日乘子法的数学原理"><a href="#拉格朗日乘子法的数学原理" class="headerlink" title="拉格朗日乘子法的数学原理"></a>拉格朗日乘子法的数学原理</h1><p>经典拉格朗日乘子法是下面的优化问题：</p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -342,8 +342,8 @@ g(x,y)=0
 \nabla_{\lambda}L(x,y,\lambda) = g(x,y)
 \end{cases} \tag 4</script><p>即若令拉格朗日函数的梯度为零，即令(4)式为零，即可得到方程(2)，虽然\( \lambda \)符号相反但不影响。</p>
 <h1 id="系数-lambda-作用"><a href="#系数-lambda-作用" class="headerlink" title="系数\( \lambda \)作用"></a>系数\( \lambda \)作用</h1><p>为了消除正负号可能对读者带来的困扰，我们对(2)和(4)做如下变化</p>
-<script type="math/tex; mode=display">|\lambda| = |\frac{\nabla f(x)}{\nabla g(x)}| \tag5</script><p>可以发现，当\( |\lambda| \)越小，\( \nabla g(x) \)的模就越大于\( \nabla f(x) \)。极端情况下，\( |\lambda| \rightarrow 0\)，此时\( |\nabla g(x)|  \rightarrow \infty  \)。这意味着在\(x\)点，\( g(x) \)几乎是垂直的，对增量非常敏感：当最优值不小心变一点点，条件\( g(x)=0 \)将严重偏离；若\( |\lambda| \)很大，\( g(x) \)几乎是水平的，则其对增量不敏感（若\( g(x) \)的轻微偏离不会造成太大的损失，可以适当牺牲约束条件的精确性，来换取更优的解）。<br>换句话说，\( |\lambda| \)越小，其求得的结果灵敏度越高，反之越低；可以说\( |\lambda| \)是衡量最优解灵敏度的一种方法。（当然也可以直接求\( \nabla g(x) \)来衡量灵敏度，这样更绝对一点）[2]</p>
-<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>设一个具体的例子，我们需要求下列问题[3]:</p>
+<script type="math/tex; mode=display">|\lambda| = |\frac{\nabla f(x)}{\nabla g(x)}| \tag5</script><p>可以发现，当\( |\lambda| \)越小，\( \nabla g(x) \)的模就越大于\( \nabla f(x) \)。极端情况下，\( |\lambda| \rightarrow 0\)，此时\( |\nabla g(x)|  \rightarrow \infty  \)。这意味着在\(x\)点，\( g(x) \)几乎是垂直的，对增量非常敏感：当最优值不小心变一点点，条件\( g(x)=0 \)将严重偏离；若\( |\lambda| \)很大，\( g(x) \)几乎是水平的，则其对增量不敏感（若\( g(x) \)的轻微偏离不会造成太大的损失，可以适当牺牲约束条件的精确性，来换取更优的解）。<br>换句话说，\( |\lambda| \)越小，其求得的结果灵敏度越高，反之越低；可以说\( |\lambda| \)是衡量最优解灵敏度的一种方法。（当然也可以直接求\( \nabla g(x) \)来衡量灵敏度，这样更绝对一点）<a href="#jump">[2]</a></p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>设一个具体的例子，我们需要求下列问题<a href="#jump">[3]</a>:</p>
 <script type="math/tex; mode=display">
 \begin{align}
 \max_{x,y}f(x,y) = x^2y \\\
@@ -360,7 +360,7 @@ x^2+2\lambda y=0\\\
 x^2+y^2-3=0
 \end{cases}</script><p>根据上式，我们可以解得\( (x,y,\lambda) \)为：</p>
 <script type="math/tex; mode=display">(\pm\sqrt{2},1,-1);(\pm\sqrt{2},-1,1);(0,\pm\sqrt{3},0)</script><p>根据几个不同的解带入\( f(x,y) \)得到，2，-2，0，也就是我们需要的最大值，最小值，对应的直观图像解释如上图图所示（<strong>非常直观的展现约束和等高线的含义</strong>）</p>
-<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p>[1] <a href="http://blog.csdn.net/unoboros/article/details/29363223" target="_blank" rel="noopener">一种对拉格朗日乘子的直观理解</a><br>[2] <a href="http://blog.csdn.net/u014792304/article/details/78396955" target="_blank" rel="noopener">拉格朗日乘子法（Lagrange Multiplier）详解以及乘子lambda的意义</a><br>[3]<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/" target="_blank" rel="noopener">【直观详解】拉格朗日乘法和KKT条件</a><br>[4]<a href="https://zhuanlan.zhihu.com/p/26514613" target="_blank" rel="noopener">浅谈最优化问题的KKT条件</a></p>
+<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：<span id="jump"></span></h1><p>[1] <a href="http://blog.csdn.net/unoboros/article/details/29363223" target="_blank" rel="noopener">一种对拉格朗日乘子的直观理解</a><br>[2] <a href="http://blog.csdn.net/u014792304/article/details/78396955" target="_blank" rel="noopener">拉格朗日乘子法（Lagrange Multiplier）详解以及乘子lambda的意义</a><br>[3]<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/" target="_blank" rel="noopener">【直观详解】拉格朗日乘法和KKT条件</a><br>[4]<a href="https://zhuanlan.zhihu.com/p/26514613" target="_blank" rel="noopener">浅谈最优化问题的KKT条件</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
       
     </div>
@@ -458,10 +458,10 @@ x^2+y^2-3=0
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -482,7 +482,7 @@ x^2+y^2-3=0
                 <a href="/archives/">
               
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
@@ -548,7 +548,7 @@ x^2+y^2-3=0
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
