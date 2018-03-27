@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-ccf99fcbded18b80b8d9d8553be1eec6_hd.jpg">
 <meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/34d255f282ae_B984/2_3.png">
 <meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/34d255f282ae_B984/3_3.png">
-<meta property="og:updated_time" content="2018-03-26T13:19:16.648Z">
+<meta property="og:updated_time" content="2018-03-27T12:19:12.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="决策树">
 <meta name="twitter:description" content="决策树引导通俗来说，决策树分类的思想类似于找对象。现想象一个女孩的母亲要给这个女孩介绍男朋友，于是有了下面的对话：[5] 1234567891011121314151617女儿：多大年纪了？母亲：26。女儿：长的帅不帅？母亲：挺帅的。女儿：收入高不？母亲：不算很高，中等情况。女儿：是公务员不？母亲：是，在税务局上班呢。女儿：那好，我去见见。 这个女孩的决策过程就是典型的分类树决策。相当于通过年龄、">
@@ -189,7 +189,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -199,7 +199,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -263,7 +263,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-24T20:11:59+08:00">
                 2018-03-24
@@ -386,7 +386,17 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
 <p><strong>预剪枝</strong>——在构造过程中，当某个节点满足剪枝条件，则直接停止此分支的构造。</p>
 <p><strong>后剪枝</strong>——先构造完成完整的决策树，再通过某些条件遍历树进行剪枝。</p>
 <p>后剪枝决策树通常比于简直决策树保留了更多的分支。一般情况下，后剪枝决策树的欠拟合风险很小，泛化性能往往优于预剪枝决策树</p>
-<h1 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料<span id="jump"></span></h1><p>[1]<a href="https://zh.wikipedia.org/wiki/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">维基百科：熵 (信息论)</a>)<br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9D%A1%E4%BB%B6%E7%86%B5" target="_blank" rel="noopener">维基百科：条件熵</a><br>[3]<a href="https://www.zhihu.com/question/22104055/answer/67014456" target="_blank" rel="noopener">信息增益到底怎么理解呢？ - Kay Zhou的回答 - 知乎</a><br>[4]<a href="http://zhuanlan.zhihu.com/p/26596036" target="_blank" rel="noopener">通俗理解决策树算法中的信息增益 - 忆臻的文章 - 知乎</a><br>[5]<a href="http://www.cnblogs.com/leoo2sk/archive/2010/09/19/decision-tree.html" target="_blank" rel="noopener">算法杂货铺——分类算法之决策树(Decision tree)</a><br>[6]<a href="http://www.cnblogs.com/xingshansi/p/6847334.html" target="_blank" rel="noopener">统计学习方法：CART算法</a><br>李航 (2012) 统计学习方法. 清华大学出版社, 北京.<br>[7]<a href="http://www.cnblogs.com/xingshansi/p/6815772.html" target="_blank" rel="noopener">统计学习方法：决策树（1）</a></p>
+<h1 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h1><h2 id="CART回归树"><a href="#CART回归树" class="headerlink" title="CART回归树"></a>CART回归树</h2><h2 id="CART分类树"><a href="#CART分类树" class="headerlink" title="CART分类树"></a>CART分类树</h2><p>基尼指数：</p>
+<script type="math/tex; mode=display">Gini(p) = \sum_{k=1}^K p_k (1-p_k) = 1- \sum_{k=1}^K p_k^2</script><p><strong>反应了从数据集随机抽取两样本，标记不一样的概率</strong></p>
+<h2 id="CART树剪枝"><a href="#CART树剪枝" class="headerlink" title="CART树剪枝"></a>CART树剪枝</h2><p>上节中，得到决策树剪枝的损失函数为：</p>
+<script type="math/tex; mode=display">C_\alpha (T) = C(T)+ \alpha |T|</script><p>对于决策树的某一个内部节点t，以t为<strong>单结点树</strong>的损失函数是：</p>
+<script type="math/tex; mode=display">C_\alpha (t) = C(t)+ \alpha</script><p>以<strong>t为根节点的子树</strong>\(T_t\)的损失函数是：</p>
+<script type="math/tex; mode=display">C_\alpha(T_t) = C(T_t)+ \alpha |T_t|</script><p>当\(\alpha=0\) 时及\(\alpha\)从充分小时：</p>
+<script type="math/tex; mode=display">C_\alpha(T_t) < C_\alpha (T)</script><p>当\(\alpha=0 \to \infty\) 时：</p>
+<script type="math/tex; mode=display">C_\alpha(T_t) > C_\alpha (T)</script><p>所以在某一\(\alpha\)有：</p>
+<script type="math/tex; mode=display">C_\alpha(T_t) = C_\alpha (T)</script><p>为了不混淆变量，重新定义：</p>
+<script type="math/tex; mode=display">g(t)=\frac{C(t)-C(T_t)}{|T_t|-1}</script><p><strong>α大于g(t)就是该剪</strong>。简而言之：对于同一棵树的结点，α都是一样的，当α从0开始缓慢增大（或者从+∞慢慢减小），总会有某棵子树该剪，其他子树不该剪的情况，即α超过了某个结点的g(t)，但还没有超过其他结点的g(t)。这样随着alpha不断增大，不断地剪枝，就得到了n+1棵子树，接下来只要用独立数据集测试这n+1棵子树，试试哪棵子树的误差最小 就知道那棵是最好的方案了。<a href="#jump">[6]</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料<span id="jump"></span></h1><p>[1]<a href="https://zh.wikipedia.org/wiki/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">维基百科：熵 (信息论)</a>)<br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9D%A1%E4%BB%B6%E7%86%B5" target="_blank" rel="noopener">维基百科：条件熵</a><br>[3]<a href="https://www.zhihu.com/question/22104055/answer/67014456" target="_blank" rel="noopener">信息增益到底怎么理解呢？ - Kay Zhou的回答 - 知乎</a><br>[4]<a href="http://zhuanlan.zhihu.com/p/26596036" target="_blank" rel="noopener">通俗理解决策树算法中的信息增益 - 忆臻的文章 - 知乎</a><br>[5]<a href="http://www.cnblogs.com/leoo2sk/archive/2010/09/19/decision-tree.html" target="_blank" rel="noopener">算法杂货铺——分类算法之决策树(Decision tree)</a><br>[6]<a href="http://www.cnblogs.com/xingshansi/p/6847334.html" target="_blank" rel="noopener">统计学习方法：CART算法</a><br>[7]<a href="http://www.cnblogs.com/xingshansi/p/6815772.html" target="_blank" rel="noopener">统计学习方法：决策树（1）</a><br>[8]李航 (2012) 统计学习方法. 清华大学出版社, 北京.</p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 
@@ -483,10 +493,10 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -507,7 +517,7 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
                 <a href="/archives/">
               
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -543,7 +553,7 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树引导"><span class="nav-number">1.</span> <span class="nav-text">决策树引导</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特征选取"><span class="nav-number">2.</span> <span class="nav-text">特征选取</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#熵"><span class="nav-number">2.1.</span> <span class="nav-text">熵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#熵的定义"><span class="nav-number">2.1.1.</span> <span class="nav-text">熵的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.1.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件熵"><span class="nav-number">2.1.3.</span> <span class="nav-text">条件熵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息增益"><span class="nav-number">2.2.</span> <span class="nav-text">信息增益</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">2.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.2.2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益比"><span class="nav-number">2.2.3.</span> <span class="nav-text">信息增益比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树的生成"><span class="nav-number">3.</span> <span class="nav-text">决策树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ID3算法"><span class="nav-number">3.1.</span> <span class="nav-text">ID3算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C4-5算法"><span class="nav-number">3.2.</span> <span class="nav-text">C4.5算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树的剪枝"><span class="nav-number">4.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CART算法"><span class="nav-number">5.</span> <span class="nav-text">CART算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树引导"><span class="nav-number">1.</span> <span class="nav-text">决策树引导</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特征选取"><span class="nav-number">2.</span> <span class="nav-text">特征选取</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#熵"><span class="nav-number">2.1.</span> <span class="nav-text">熵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#熵的定义"><span class="nav-number">2.1.1.</span> <span class="nav-text">熵的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.1.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件熵"><span class="nav-number">2.1.3.</span> <span class="nav-text">条件熵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息增益"><span class="nav-number">2.2.</span> <span class="nav-text">信息增益</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">2.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.2.2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益比"><span class="nav-number">2.2.3.</span> <span class="nav-text">信息增益比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树的生成"><span class="nav-number">3.</span> <span class="nav-text">决策树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ID3算法"><span class="nav-number">3.1.</span> <span class="nav-text">ID3算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C4-5算法"><span class="nav-number">3.2.</span> <span class="nav-text">C4.5算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树的剪枝"><span class="nav-number">4.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CART算法"><span class="nav-number">5.</span> <span class="nav-text">CART算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CART回归树"><span class="nav-number">5.1.</span> <span class="nav-text">CART回归树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CART分类树"><span class="nav-number">5.2.</span> <span class="nav-text">CART分类树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CART树剪枝"><span class="nav-number">5.3.</span> <span class="nav-text">CART树剪枝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -573,7 +583,7 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
