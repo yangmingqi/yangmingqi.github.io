@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="1234567891011121314def invers(a):    chu = abs(a)    result=0    while (chu!=0):         yu = int(chu%10)        chu = int(chu/10)                      result = result*10+ yu        print(yu)">
+<meta name="description" content="线性可分支持向量机函数间隔和几何间隔函数间隔几何间隔线性不可分支持向量机非线性支持向量机参考资料[]支持向量机通俗导论（理解SVM的三层境界）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="老杨的博客">
-<meta property="og:url" content="http://yoursite.com/2018/03/29/123/invers/index.html">
+<meta property="og:title" content="支持向量机">
+<meta property="og:url" content="http://yoursite.com/2018/03/28/ML/SVM/index.html">
 <meta property="og:site_name" content="老杨的博客">
-<meta property="og:description" content="1234567891011121314def invers(a):    chu = abs(a)    result=0    while (chu!=0):         yu = int(chu%10)        chu = int(chu/10)                      result = result*10+ yu        print(yu)">
-<meta property="og:updated_time" content="2018-03-29T07:37:29.074Z">
+<meta property="og:description" content="线性可分支持向量机函数间隔和几何间隔函数间隔几何间隔线性不可分支持向量机非线性支持向量机参考资料[]支持向量机通俗导论（理解SVM的三层境界）">
+<meta property="og:updated_time" content="2018-03-28T02:11:47.604Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="老杨的博客">
-<meta name="twitter:description" content="1234567891011121314def invers(a):    chu = abs(a)    result=0    while (chu!=0):         yu = int(chu%10)        chu = int(chu/10)                      result = result*10+ yu        print(yu)">
+<meta name="twitter:title" content="支持向量机">
+<meta name="twitter:description" content="线性可分支持向量机函数间隔和几何间隔函数间隔几何间隔线性不可分支持向量机非线性支持向量机参考资料[]支持向量机通俗导论（理解SVM的三层境界）">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/29/123/invers/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/28/ML/SVM/"/>
 
 
 
 
 
-  <title> | 老杨的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>支持向量机 | 老杨的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -184,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -231,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/123/invers/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/ML/SVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老杨">
@@ -248,7 +248,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">支持向量机</h1>
         
 
         <div class="post-meta">
@@ -258,10 +258,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-29T15:32:09+08:00">
-                2018-03-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-28T08:54:15+08:00">
+                2018-03-28
               </time>
             
 
@@ -279,8 +279,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/29/123/invers/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/29/123/invers/" itemprop="commentsCount"></span>
+                <a href="/2018/03/28/ML/SVM/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/28/ML/SVM/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,7 +308,9 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">invers</span><span class="params">(a)</span>:</span></span><br><span class="line">    chu = abs(a)</span><br><span class="line">    result=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (chu!=<span class="number">0</span>): </span><br><span class="line">        yu = int(chu%<span class="number">10</span>)</span><br><span class="line">        chu = int(chu/<span class="number">10</span>)      </span><br><span class="line">        </span><br><span class="line">        result = result*<span class="number">10</span>+ yu</span><br><span class="line">        print(yu)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> (a&lt;<span class="number">0</span>):</span><br><span class="line">         result = -result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        <h1 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h1><h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><h3 id="函数间隔"><a href="#函数间隔" class="headerlink" title="函数间隔"></a>函数间隔</h3><h3 id="几何间隔"><a href="#几何间隔" class="headerlink" title="几何间隔"></a>几何间隔</h3><h1 id="线性不可分支持向量机"><a href="#线性不可分支持向量机" class="headerlink" title="线性不可分支持向量机"></a>线性不可分支持向量机</h1><h1 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[]<a href="https://blog.csdn.net/v_july_v/article/details/7624837" target="_blank" rel="noopener">支持向量机通俗导论（理解SVM的三层境界）</a></p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
       
     </div>
     
@@ -332,8 +334,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/28/SVM/" rel="next" title="支持向量机">
-                <i class="fa fa-chevron-left"></i> 支持向量机
+              <a href="/2018/03/24/ML/CART/" rel="next" title="决策树">
+                <i class="fa fa-chevron-left"></i> 决策树
               </a>
             
           </div>
@@ -341,6 +343,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/29/exam/invers/" rel="prev" title="面试题/笔试题">
+                面试题/笔试题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -399,8 +405,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -416,7 +431,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -443,6 +458,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-number">1.</span> <span class="nav-text">线性可分支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数间隔和几何间隔"><span class="nav-number">1.1.</span> <span class="nav-text">函数间隔和几何间隔</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数间隔"><span class="nav-number">1.1.1.</span> <span class="nav-text">函数间隔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几何间隔"><span class="nav-number">1.1.2.</span> <span class="nav-text">几何间隔</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性不可分支持向量机"><span class="nav-number">2.</span> <span class="nav-text">线性不可分支持向量机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非线性支持向量机"><span class="nav-number">3.</span> <span class="nav-text">非线性支持向量机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -466,7 +497,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 

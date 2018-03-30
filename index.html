@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -228,7 +228,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/123/invers/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/exam/invers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老杨">
@@ -247,7 +247,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/29/123/invers/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2018/03/29/exam/invers/" itemprop="url">面试题/笔试题</a></h1>
         
 
         <div class="post-meta">
@@ -257,7 +257,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-29T15:32:09+08:00">
                 2018-03-29
@@ -299,7 +299,11 @@
       
         
           
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">invers</span><span class="params">(a)</span>:</span></span><br><span class="line">    chu = abs(a)</span><br><span class="line">    result=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (chu!=<span class="number">0</span>): </span><br><span class="line">        yu = int(chu%<span class="number">10</span>)</span><br><span class="line">        chu = int(chu/<span class="number">10</span>)      </span><br><span class="line">        </span><br><span class="line">        result = result*<span class="number">10</span>+ yu</span><br><span class="line">        print(yu)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> (a&lt;<span class="number">0</span>):</span><br><span class="line">         result = -result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+            <h1 id="题目1：求整数反序"><a href="#题目1：求整数反序" class="headerlink" title="题目1：求整数反序"></a>题目1：求整数反序</h1><p>（阿里网上面试编程题）<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">input:</span><span class="number">123</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">321</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">input:</span><span class="number">-580</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">-85</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">input:</span><span class="number">65</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">56</span></span><br></pre></td></tr></table></figure></p>
+<p>解答：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(a)</span>:</span></span><br><span class="line">    x = abs(a)  <span class="comment"># 求绝对值</span></span><br><span class="line">    result=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (x!=<span class="number">0</span>): </span><br><span class="line">        result = result*<span class="number">10</span>+ int(x%<span class="number">10</span>) </span><br><span class="line">        x = int(x/<span class="number">10</span>) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将正负号还原    </span></span><br><span class="line">    <span class="keyword">if</span> (a&lt;<span class="number">0</span>):</span><br><span class="line">         result = -result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure></p>
+<h1 id="题目2："><a href="#题目2：" class="headerlink" title="题目2："></a>题目2：</h1><p>（阿里网上编程题）<br>在N*N的方格中，站在原点的人能看到几个点？<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">input:</span><span class="number">3</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">input:</span><span class="number">4</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">9</span></span><br></pre></td></tr></table></figure></p>
+<p>解答：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(N)</span>:</span></span><br><span class="line">    N = int(N)</span><br><span class="line">    m = []  <span class="comment">#用来存放所有点的方向</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">            v = i/j  <span class="comment">#计算每个点对原点的方向</span></span><br><span class="line">            m.append(v)</span><br><span class="line">    m=np.array(m[<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">    m_unique = []  <span class="comment">#存放不重复点的方向</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> m_unique:</span><br><span class="line">            m_unique.append(i)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> len(m_unique)+<span class="number">2</span>  <span class="comment">#输出</span></span><br></pre></td></tr></table></figure></p>
+
           
         
       
@@ -347,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/SVM/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/ML/SVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老杨">
@@ -366,7 +370,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/28/SVM/" itemprop="url">支持向量机</a></h1>
+                <a class="post-title-link" href="/2018/03/28/ML/SVM/" itemprop="url">支持向量机</a></h1>
         
 
         <div class="post-meta">
@@ -376,7 +380,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-28T08:54:15+08:00">
                 2018-03-28
@@ -468,7 +472,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/CART/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/ML/CART/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老杨">
@@ -487,7 +491,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/24/CART/" itemprop="url">决策树</a></h1>
+                <a class="post-title-link" href="/2018/03/24/ML/CART/" itemprop="url">决策树</a></h1>
         
 
         <div class="post-meta">
@@ -497,7 +501,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-24T20:11:59+08:00">
                 2018-03-24
@@ -674,7 +678,7 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/Bayes/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/ML/Bayes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老杨">
@@ -693,7 +697,7 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/24/Bayes/" itemprop="url">朴素贝叶斯</a></h1>
+                <a class="post-title-link" href="/2018/03/24/ML/Bayes/" itemprop="url">朴素贝叶斯</a></h1>
         
 
         <div class="post-meta">
@@ -703,7 +707,7 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-24T18:33:13+08:00">
                 2018-03-24
@@ -843,7 +847,7 @@ f(x) &= arg \min_y \sum_{k=1}^{K}L(c_k,y)P(c_k|X=x) \\\
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/Lagrange/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/ML/Lagrange/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老杨">
@@ -862,7 +866,7 @@ f(x) &= arg \min_y \sum_{k=1}^{K}L(c_k,y)P(c_k|X=x) \\\
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/20/Lagrange/" itemprop="url">拉格朗日乘子法</a></h1>
+                <a class="post-title-link" href="/2018/03/20/ML/Lagrange/" itemprop="url">拉格朗日乘子法</a></h1>
         
 
         <div class="post-meta">
@@ -872,7 +876,7 @@ f(x) &= arg \min_y \sum_{k=1}^{K}L(c_k,y)P(c_k|X=x) \\\
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T10:20:46+08:00">
                 2018-03-20
@@ -1010,7 +1014,7 @@ x^2+y^2-3=0
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/logist/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/ML/logist/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老杨">
@@ -1029,7 +1033,7 @@ x^2+y^2-3=0
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/18/logist/" itemprop="url">逻辑斯蒂回归(Logistic Regression)总结</a></h1>
+                <a class="post-title-link" href="/2018/03/18/ML/logist/" itemprop="url">逻辑斯蒂回归(Logistic Regression)总结</a></h1>
         
 
         <div class="post-meta">
@@ -1039,7 +1043,7 @@ x^2+y^2-3=0
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T21:00:01+08:00">
                 2018-03-18
@@ -1199,7 +1203,7 @@ h_w(x_i) = P(y=1|x_i)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T17:04:18+08:00">
                 2018-03-18
@@ -1333,7 +1337,7 @@ h_w(x_i) = P(y=1|x_i)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T20:29:14+08:00">
                 2018-03-14
@@ -1477,7 +1481,7 @@ h_w(x_i) = P(y=1|x_i)
                 <a href="/archives/">
               
                   <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1527,7 +1531,7 @@ h_w(x_i) = P(y=1|x_i)
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
