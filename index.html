@@ -186,6 +186,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -299,10 +309,17 @@
       
         
           
-            <h1 id="不同的-SQL-JOIN"><a href="#不同的-SQL-JOIN" class="headerlink" title="不同的 SQL JOIN"></a>不同的 SQL JOIN</h1><p>不同的 SQL JOIN 类型：</p>
-<p><strong>INNER JOIN</strong>：如果表中有至少一个匹配，则返回行<br><strong>LEFT JOIN</strong>：即使右表中没有匹配，也从左表返回所有的行<br><strong>RIGHT JOIN</strong>：即使左表中没有匹配，也从右表返回所有的行<br><strong>FULL JOIN</strong>：只要其中一个表中存在匹配，则返回行</p>
+          不同的 SQL JOIN不同的 SQL JOIN 类型：
+INNER JOIN：如果表中有至少一个匹配，则返回行LEFT JOIN：即使右表中没有匹配，也从左表返回所有的行RIGHT JOIN：即使左表中没有匹配，也从右表返回所有的行FULL JOIN：只要其中一个表中存在匹配，则返回行
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/DataBase/join/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -420,18 +437,16 @@
       
         
           
-            <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>Given a sorted array, remove the duplicates in-place such that each element appear only once and return the new length.</p>
-<p>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Given nums = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line"></span><br><span class="line">Your <span class="keyword">function</span> <span class="title">should</span> <span class="keyword">return</span> <span class="type">length</span> = <span class="number">2</span>, <span class="keyword">with</span> the first two elements <span class="keyword">of</span> nums being <span class="number">1</span> <span class="keyword">and</span> <span class="number">2</span> respectively.</span><br><span class="line">It doesn<span class="symbol">'t</span> matter what you leave beyond the <span class="keyword">new</span> length.</span><br></pre></td></tr></table></figure>
-<p>给定一个有序数组，你需要原地删除其中的重复内容，使每个元素只出现一次,并返回新的长度。</p>
-<p>不要另外定义一个数组，您必须通过用 O(1) 额外内存原地修改输入的数组来做到这一点。<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line"></span><br><span class="line">给定数组: nums = <span class="string">[1,1,2]</span>,</span><br><span class="line"></span><br><span class="line">你的函数应该返回新长度 <span class="number">2</span>, 并且原数组nums的前两个元素必须是<span class="number">1</span>和<span class="number">2</span></span><br><span class="line">不需要理会新的数组长度后面的元素</span><br></pre></td></tr></table></figure></p>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这个问题比较简单，首先我写了一个答案，时间是15ms，排28.5%.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != nums[len-<span class="number">1</span>])&#123;</span><br><span class="line">                nums[len] = nums[i];</span><br><span class="line">                len += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>后来我又想了一下，可以把第6和第7行代码合并，减少运算时间。时间是14ms，排53.93%.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != nums[len-<span class="number">1</span>])&#123;</span><br><span class="line">                nums[len++] = nums[i];</span><br><span class="line">                <span class="comment">// len += 1;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>因为len表示长度，所以第5行代码中的nums[len-1]需要计算len-1。于是我将len表示不重复数组最后一个的位置，然后返回的时候将len+1得到新的长度。最终的代码如下所示m，时间是13ms，排92.1%.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != nums[len])&#123;</span><br><span class="line">                nums[++len] = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ++len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-          
+          问题描述Given a sorted array, remove the duplicates in-place such that each element appear only once and return the new length.
+Do not allocate extra spac
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/04/LeetCode/26_Remove Duplicates from Sorted Array/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -549,12 +564,16 @@
       
         
           
-            <h1 id="题目1：求整数反序"><a href="#题目1：求整数反序" class="headerlink" title="题目1：求整数反序"></a>题目1：求整数反序</h1><p>（阿里网上面试编程题）<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">input:</span><span class="number">123</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">321</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">input:</span><span class="number">-580</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">-85</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">input:</span><span class="number">65</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">56</span></span><br></pre></td></tr></table></figure></p>
-<p>解答：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(a)</span>:</span></span><br><span class="line">    x = abs(a)  <span class="comment"># 求绝对值</span></span><br><span class="line">    result=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (x!=<span class="number">0</span>): </span><br><span class="line">        result = result*<span class="number">10</span>+ int(x%<span class="number">10</span>) </span><br><span class="line">        x = int(x/<span class="number">10</span>) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将正负号还原    </span></span><br><span class="line">    <span class="keyword">if</span> (a&lt;<span class="number">0</span>):</span><br><span class="line">         result = -result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure></p>
-<h1 id="题目2："><a href="#题目2：" class="headerlink" title="题目2："></a>题目2：</h1><p>（阿里网上编程题）<br>在N*N的方格中，站在原点的人能看到几个点？<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">input:</span><span class="number">3</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">input:</span><span class="number">4</span></span><br><span class="line"><span class="symbol">output:</span><span class="number">9</span></span><br></pre></td></tr></table></figure></p>
-<p>解答：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(N)</span>:</span></span><br><span class="line">    N = int(N)</span><br><span class="line">    m = []  <span class="comment">#用来存放所有点的方向</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">            v = i/j  <span class="comment">#计算每个点对原点的方向</span></span><br><span class="line">            m.append(v)</span><br><span class="line">    m=np.array(m[<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">    m_unique = []  <span class="comment">#存放不重复点的方向</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> m_unique:</span><br><span class="line">            m_unique.append(i)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> len(m_unique)+<span class="number">2</span>  <span class="comment">#输出</span></span><br></pre></td></tr></table></figure></p>
-
-          
+          题目1：求整数反序（阿里网上面试编程题）12345678input:123output:321input:-580output:-85input:65output:56
+解答：123456789101112def reverse(a):    x = abs(a)  # 求绝对值    result
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/29/LeetCode/invers/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -672,10 +691,17 @@
       
         
           
-            <h1 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h1><h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><h3 id="函数间隔"><a href="#函数间隔" class="headerlink" title="函数间隔"></a>函数间隔</h3><h3 id="几何间隔"><a href="#几何间隔" class="headerlink" title="几何间隔"></a>几何间隔</h3><h1 id="线性不可分支持向量机"><a href="#线性不可分支持向量机" class="headerlink" title="线性不可分支持向量机"></a>线性不可分支持向量机</h1><h1 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[]<a href="https://blog.csdn.net/v_july_v/article/details/7624837" target="_blank" rel="noopener">支持向量机通俗导论（理解SVM的三层境界）</a></p>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+          线性可分支持向量机函数间隔和几何间隔函数间隔几何间隔线性不可分支持向量机非线性支持向量机参考资料[]支持向量机通俗导论（理解SVM的三层境界）
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/28/ML/SVM/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -793,95 +819,16 @@
       
         
           
-            <h1 id="决策树引导"><a href="#决策树引导" class="headerlink" title="决策树引导"></a>决策树引导</h1><p>通俗来说，决策树分类的思想类似于找对象。现想象一个女孩的母亲要给这个女孩介绍男朋友，于是有了下面的对话：<a href="#jump">[5]</a></p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">女儿：多大年纪了？</span><br><span class="line"></span><br><span class="line">母亲：<span class="number">26</span>。</span><br><span class="line"></span><br><span class="line">女儿：长的帅不帅？</span><br><span class="line"></span><br><span class="line">母亲：挺帅的。</span><br><span class="line"></span><br><span class="line">女儿：收入高不？</span><br><span class="line"></span><br><span class="line">母亲：不算很高，中等情况。</span><br><span class="line"></span><br><span class="line">女儿：是公务员不？</span><br><span class="line"></span><br><span class="line">母亲：是，在税务局上班呢。</span><br><span class="line"></span><br><span class="line">女儿：那好，我去见见。</span><br></pre></td></tr></table></figure>
-<p>这个女孩的决策过程就是典型的分类树决策。相当于通过年龄、长相、收入和是否公务员对将男人分为两个类别：见和不见。假设这个女孩对男人的要求是：30岁以下、长相中等以上并且是高收入者或中等以上收入的公务员，那么这个可以用下图表示女孩的决策逻辑（声明：此决策树纯属为了写文章而YY的产物，没有任何根据，也不代表任何女孩的择偶倾向，请各位女同胞莫质问我^_^）：</p>
-<p><img src="https://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/34d255f282ae_B984/1_3.png" alt=""></p>
-<p>上图完整表达了这个女孩决定是否见一个约会对象的策略，其中绿色节点表示判断条件，橙色节点表示决策结果，箭头表示在一个判断条件在不同情况下的决策路径，图中红色箭头表示了上面例子中女孩的决策过程。</p>
-<p>这幅图基本可以算是一颗决策树，说它“基本可以算”是因为图中的判定条件没有量化，如收入高中低等等，还不能算是严格意义上的决策树，如果将所有条件量化，则就变成真正的决策树了。</p>
-<p>有了上面直观的认识，我们可以正式定义决策树了：</p>
-<p><strong>决策树（decision tree）是一个树结构（可以是二叉树或非二叉树）。其每个非叶节点表示一个特征属性上的测试，每个分支代表这个特征属性在某个值域上的输出，而每个叶节点存放一个类别。使用决策树进行决策的过程就是从根节点开始，测试待分类项中相应的特征属性，并按照其值选择输出分支，直到到达叶子节点，将叶子节点存放的类别作为决策结果。</strong></p>
-<h1 id="特征选取"><a href="#特征选取" class="headerlink" title="特征选取"></a>特征选取</h1><h2 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h2><h3 id="熵的定义"><a href="#熵的定义" class="headerlink" title="熵的定义"></a>熵的定义</h3><p>香农把随机变量X的熵值 Η定义如下:</p>
-<script type="math/tex; mode=display">H(X)=E[I(X)]=E[-\log(P(X)]</script><p>其中，P为X的概率质量函数（probability mass function），E为期望函数，而<strong>I(X)是X的信息量（又称为自信息），表示包含信息的多少</strong>。</p>
-<p>当取自有限的样本时，熵的公式可以表示为：</p>
-<script type="math/tex; mode=display">H(X)=\sum_i P(x_i)I(x_i)=-\sum_i P(x_i) \log P(x_i)</script><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>如英语有26个字母，假如每个字母在文章中出现次数平均的话，每个字母的讯息量为：<a href="#jump">[1]</a></p>
-<script type="math/tex; mode=display">I_e = -\log \frac{1}{26} =4.7</script><p>以日文五十音平假名作为相对范例，假设每个平假名日语文字在文章中出现的概率相等，每个平假名日语文字可携带的信息量为：</p>
-<script type="math/tex; mode=display">I_e = -\log \frac{1}{50} =5.64</script><p>而汉字常用的有2500个，假如每个汉字在文章中出现次数平均的话，每个汉字的信息量为：</p>
-<script type="math/tex; mode=display">I_e = -\log \frac{1}{2500} =11.3</script><p>实际上每个字母和每个汉字在文章中出现的次数并不平均，比方说较少见字母（如z）和罕用汉字就具有相对高的信息量。但上述计算提供了以下概念：使用书写单元越多的文字，每个单元所包含的讯息量越大。</p>
-<p><strong>熵是整个系统的平均消息量。熵越大，随机变量的不确定性就越大，所包含的信息就越多。</strong></p>
-<script type="math/tex; mode=display">H=\sum_{i=1}^n p_i I_e = -\sum_{i=1}^n p_i \log_2p_i</script><p>如果两个系统具有同样大的消息量，如一篇用不同文字写的同一文章，由于汉字的信息量较大，中文文章应用的汉字就比英文文章使用的字母要少。所以汉字印刷的文章要比其他应用总体数量少的字母印刷的文章要短。即使一个汉字占用两个字母的空间，汉字印刷的文章也要比英文字母印刷的用纸少。</p>
-<h3 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h3><p>如果\(H(Y|X=x)\)为变数\(Y\)在变数\(X\)取特定值\(x\)条件下的熵，那么\(H(Y|X)\)就是\(H(Y|X=x)\)在\(X\)取遍所有可能的\(x\)后取平均的结果。<a href="#jump">[2]</a></p>
-<script type="math/tex; mode=display">
-\begin{align}
-H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
-& = -\sum_x p(x) \sum_y p(y|x) \log p(y|x) \\\
-& = - \sum_{x,y} p(x,y) \log p(y|x) \\\
-& = - \sum_{x,y} p(x,y) \log \frac{p(x,y)}{p(x)} \\\
-& = \sum_{x,y} p(x,y) \log \frac{p(x)}{p(x,y)} \\\
-\end{align}</script><p>当且仅当\(Y\)的值完全由\(X\)确定时\(H(Y|X)=0\)。相反，当且仅当\(Y\)和 \(X\)为独立随机变数时\(H(Y|X)=H(Y)\)。</p>
-<h2 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>决策树最重要的概念就是信息增益，如果这个概念弄清楚了，那么怎么来选取特征作为决策树的节点就很好理解了。</p>
-<script type="math/tex; mode=display">g(Y,X) = H(Y)-H(Y|X)</script><p><strong>熵\(H(Y)\)：表示随机变量的不确定性。</strong></p>
-<p><strong>条件熵\(H(Y|X)\)：在一个条件下，随机变量的不确定性。</strong></p>
-<p><strong>信息增益\(g(Y,X)\)：熵 - 条件熵</strong></p>
-<p><strong>信息增益在一个条件下，信息不确定性减少的程度</strong></p>
-<p>通俗地讲，X(明天下雨)是一个随机变量，X的熵可以算出来， Y(明天阴天)也是随机变量，在阴天情况下下雨的信息熵我们如果也知道的话（此处需要知道其联合概率分布或是通过数据估计）即是条件熵。<a href="#jump">[3]</a></p>
-<p>两者相减就是信息增益！原来明天下雨例如信息熵是2，条件熵是0.01（因为如果是阴天就下雨的概率很大，信息就少了），这样相减后为1.99，在获得阴天这个信息后，下雨信息不确定性减少了1.99！是很多的！所以信息增益大！也就是说，阴天这个信息对下雨来说是很重要的！</p>
-<p>所以在特征选择的时候常常用信息增益，如果IG（信息增益大）的话那么这个特征对于分类来说很关键</p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>我们有如下12组数据：<a href="#jump">[4]</a></p>
-<p><img src="https://pic1.zhimg.com/80/v2-ccf99fcbded18b80b8d9d8553be1eec6_hd.jpg" alt=""></p>
-<p>嫁与不嫁的个数为均为6个，占1/2，可以求得随机变量Y（嫁与不嫁）的信息熵为：</p>
-<script type="math/tex; mode=display">H(Y=嫁) =-( \frac{1}{2} \log \frac{1}{2} + \frac{1}{2} \log \frac{1}{2} ) = 0.301</script><p>现在假如我知道了一个男生的身高信息。身高有三个可能的取值{矮，中，高}</p>
-<p>矮包括{1,2,3,5,6,11,12}，嫁的个数为1个，不嫁的个数为6个，\( P(Y=嫁|X=矮)=\frac{1}{7} ，  P(Y=不嫁|X=矮)=\frac{6}{7} \)</p>
-<p>中包括{8,9} ，嫁的个数为2个，不嫁的个数为0个</p>
-<p>高包括{4,7,10}，嫁的个数为3个，不嫁的个数为0个</p>
-<p>所以：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-&H(Y|X=矮) =-( \frac{1}{7} \log \frac{1}{7} + \frac{6}{7} \log \frac{6}{7} ) = 0.178 \\\
-&H(Y|X=中) = -(1\log1+0) = 0 \\\
-&H(Y|X=高) = -(1\log1+0) = 0  \\\
-\end{align}</script><p>又因为</p>
-<script type="math/tex; mode=display">p(X = 矮) = \frac{7}{12},p(X =中) = \frac{2}{12},p(X=高) = \frac{3}{12}</script><p>则可以得出条件熵为</p>
-<script type="math/tex; mode=display">H(Y|X) = \frac{7}{12} \times 0.178+ \frac{2}{12} \times 0+\frac{3}{12} \times 0</script><p>那么我们知道信息熵与条件熵相减就是我们的信息增益，为:</p>
-<script type="math/tex; mode=display">0.301-0.103=0.198</script><p>我们可以知道，本来如果我对一个男生什么都不知道的话，<strong>作为他的女朋友决定是否嫁给他的不确定性有0.301这么大</strong>。</p>
-<p><strong>当我们知道男朋友的身高信息后，不确定度减少了0.198，不确定度只有0.103这么大了</strong>，（如果不确定是0就最好了，我肯定嫁给他，因为他好的没有悬念，哈哈）.也就是说，身高这个特征对于我们广大女生同学来说，决定嫁不嫁给自己的男朋友是很重要的。</p>
-<p>至少我们知道了身高特征后，我们原来没有底的心里（0.301）已经明朗一半多了，减少0.198了（大于原来的一半了）。</p>
-<p>那么这就类似于非诚勿扰节目里面的桥段了，请问女嘉宾，你只能知道男生的一个特征。请问你想知道哪个特征。</p>
-<p>假如其它特征我也全算了，信息增益是身高这个特征最大。那么我就可以说，孟非哥哥，我想知道男嘉宾的一个特征是身高特征。因为它在这些特征中，对于我挑夫君是最重要的，信息增益是最大的，知道了这个特征，嫁与不嫁的不确定度减少的是最多的。</p>
-<h3 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h3><p>以信息增益作为划分训练数据集的特征，存在偏向于选择取值较多的特征的问题。使用信息增益比（informatio gain ratio）可以对这一问题进行校正。</p>
-<script type="math/tex; mode=display">g_R(Y,X) = \frac{g(Y,X)}{H_X(Y)}</script><h1 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h1><h2 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h2><p>ID3算法就是在每次需要分裂时，计算每个属性的增益率，然后选择增益率最大的属性进行分裂。下面我们继续用SNS社区中不真实账号检测的例子说明如何使用ID3算法构造决策树。为了简单起见，我们假设训练集合包含10个元素：<a href="#jump">[5]</a><br><img src="https://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/34d255f282ae_B984/2_3.png" alt=""><br>其中s、m和l分别表示小、中和大。</p>
-<p>设L、F、H和R表示日志密度、好友密度、是否使用真实头像和账号是否真实，下面计算各属性的信息增益。</p>
-<script type="math/tex; mode=display">H(D) = -0.7\log 0.7 -0.3\log 0.3 = 0.879</script><script type="math/tex; mode=display">H(D|L)=0.3 \times (- \frac{1}{3} \log \frac{1}{3} - \frac{2}{3} \log \frac{2}{3}) +0.4 \times (- \frac{1}{4} \log \frac{1}{4} - \frac{3}{4} \log \frac{3}{4}) + 0.3 \times (- \frac{0}{3} \log \frac{0}{3} - \frac{3}{3} \log \frac{3}{3}) = 0.603</script><script type="math/tex; mode=display">gain(L) = H(D)-H(D|L)</script><p>因此日志密度的信息增益是0.276。</p>
-<p>用同样方法得到H和F的信息增益分别为0.033和0.553。</p>
-<p> 因为F具有最大的信息增益，所以第一次分裂选择F为分裂属性，分裂后的结果如下图表示：<br><img src="https://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/34d255f282ae_B984/3_3.png" alt=""><br>在上图的基础上，再递归使用这个方法计算子节点的分裂属性，最终就可以得到整个决策树。</p>
-<p>上面为了简便，将特征属性离散化了，其实日志密度和好友密度都是连续的属性。对于特征属性为连续值，可以如此使用ID3算法：</p>
-<p>先将D中元素按照特征属性排序，则每两个相邻元素的中间点可以看做潜在分裂点，从第一个潜在分裂点开始，分裂D并计算两个集合的期望信息，具有最小期望信息的点称为这个属性的最佳分裂点，其信息期望作为此属性的信息期望。</p>
-<h2 id="C4-5算法"><a href="#C4-5算法" class="headerlink" title="C4.5算法"></a>C4.5算法</h2><p>ID3算法存在一个问题，就是偏向于多值属性，例如，如果存在唯一标识属性ID，则ID3会选择它作为分裂属性，这样虽然使得划分充分纯净，但这种划分对分类几乎毫无用处。ID3的后继算法C4.5使用<strong>信息增益比</strong>，试图克服这个偏倚。</p>
-<h1 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h1><p>首先看一看决策树整体的熵：</p>
-<script type="math/tex; mode=display">C(T)= \sum_{t=1}^{|T|} N_tH_t(T) = N\sum_{t=1}^{|T|} \frac{N_t}{N}H_t(T) =- N\sum_{t=1}^{|T|} \frac{N_t}{N} \sum_{k=1}^{K} \frac{N_{tk}}{N_t} \log \frac{N_{tk}}{N_t}</script><p> 其中树\(T\)的叶节点个数为\(|T|\)。\(t\)是树\(T\)的叶节点，该叶节点有\(N<em>t\)个样本点，其中\(k\)类的样本点有\(N</em>{tk}\)个，\(H_t(T)\)表示叶节点的经验熵<a href="#jump">[7]</a></p>
-<p>其中\(N\)是常数，乘不乘都不影响最终结果。对于离散随机变量X求均值，一般就是p<em>X可能取值，再求和。上面的\(C(T)\)其实就是<em>*不同节点熵的均值</em></em>呀。为了防止过拟合，就是防止叶节点过多，添加约束项：</p>
-<p>损失函数：</p>
-<script type="math/tex; mode=display">C_\alpha (T) = C(T)+ \alpha |T|</script><p>\(C(T）\)表示模型对训练数据的预测误差，即模型与训练数据的拟合程度；\(|T|\)是叶节点的个数，表示模型的复杂度；\(\alpha \geq 0 \)控制两者之间的影响。较大的\(\alpha \)促使选择较简单的模型（树），较小的\(\alpha \)促使选择较复杂的模型（树）。\(\alpha =0\)意味着只考虑与训练数据的拟合程度，不考虑模型的复杂度。<a href="#jump">[6]</a></p>
-<p>剪枝是决策树学习算法对付“过拟合”的主要手段。剪枝有两种：</p>
-<p><strong>预剪枝</strong>——在构造过程中，当某个节点满足剪枝条件，则直接停止此分支的构造。</p>
-<p><strong>后剪枝</strong>——先构造完成完整的决策树，再通过某些条件遍历树进行剪枝。</p>
-<p>后剪枝决策树通常比于简直决策树保留了更多的分支。一般情况下，后剪枝决策树的欠拟合风险很小，泛化性能往往优于预剪枝决策树</p>
-<h1 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h1><h2 id="CART回归树"><a href="#CART回归树" class="headerlink" title="CART回归树"></a>CART回归树</h2><h2 id="CART分类树"><a href="#CART分类树" class="headerlink" title="CART分类树"></a>CART分类树</h2><p>基尼指数：</p>
-<script type="math/tex; mode=display">Gini(p) = \sum_{k=1}^K p_k (1-p_k) = 1- \sum_{k=1}^K p_k^2</script><p><strong>反应了从数据集随机抽取两样本，标记不一样的概率</strong></p>
-<h2 id="CART树剪枝"><a href="#CART树剪枝" class="headerlink" title="CART树剪枝"></a>CART树剪枝</h2><p>上节中，得到决策树剪枝的损失函数为：</p>
-<script type="math/tex; mode=display">C_\alpha (T) = C(T)+ \alpha |T|</script><p>对于决策树的某一个内部节点t，以t为<strong>单结点树</strong>的损失函数是：</p>
-<script type="math/tex; mode=display">C_\alpha (t) = C(t)+ \alpha</script><p>以<strong>t为根节点的子树</strong>\(T_t\)的损失函数是：</p>
-<script type="math/tex; mode=display">C_\alpha(T_t) = C(T_t)+ \alpha |T_t|</script><p>当\(\alpha=0\) 时及\(\alpha\)从充分小时：</p>
-<script type="math/tex; mode=display">C_\alpha(T_t) < C_\alpha (T)</script><p>当\(\alpha=0 \to \infty\) 时：</p>
-<script type="math/tex; mode=display">C_\alpha(T_t) > C_\alpha (T)</script><p>所以在某一\(\alpha\)有：</p>
-<script type="math/tex; mode=display">C_\alpha(T_t) = C_\alpha (T)</script><p>为了不混淆变量，重新定义：</p>
-<script type="math/tex; mode=display">g(t)=\frac{C(t)-C(T_t)}{|T_t|-1}</script><p><strong>α大于g(t)就是该剪</strong>。简而言之：对于同一棵树的结点，α都是一样的，当α从0开始缓慢增大（或者从+∞慢慢减小），总会有某棵子树该剪，其他子树不该剪的情况，即α超过了某个结点的g(t)，但还没有超过其他结点的g(t)。这样随着alpha不断增大，不断地剪枝，就得到了n+1棵子树，接下来只要用独立数据集测试这n+1棵子树，试试哪棵子树的误差最小 就知道那棵是最好的方案了。<a href="#jump">[6]</a></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料<span id="jump"></span></h1><p>[1]<a href="https://zh.wikipedia.org/wiki/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">维基百科：熵 (信息论)</a>)<br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9D%A1%E4%BB%B6%E7%86%B5" target="_blank" rel="noopener">维基百科：条件熵</a><br>[3]<a href="https://www.zhihu.com/question/22104055/answer/67014456" target="_blank" rel="noopener">信息增益到底怎么理解呢？ - Kay Zhou的回答 - 知乎</a><br>[4]<a href="http://zhuanlan.zhihu.com/p/26596036" target="_blank" rel="noopener">通俗理解决策树算法中的信息增益 - 忆臻的文章 - 知乎</a><br>[5]<a href="http://www.cnblogs.com/leoo2sk/archive/2010/09/19/decision-tree.html" target="_blank" rel="noopener">算法杂货铺——分类算法之决策树(Decision tree)</a><br>[6]<a href="http://www.cnblogs.com/xingshansi/p/6847334.html" target="_blank" rel="noopener">统计学习方法：CART算法</a><br>[7]<a href="http://www.cnblogs.com/xingshansi/p/6815772.html" target="_blank" rel="noopener">统计学习方法：决策树（1）</a><br>[8]李航 (2012) 统计学习方法. 清华大学出版社, 北京.</p>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-
-
-          
+          决策树引导通俗来说，决策树分类的思想类似于找对象。现想象一个女孩的母亲要给这个女孩介绍男朋友，于是有了下面的对话：[5]
+1234567891011121314151617女儿：多大年纪了？母亲：26。女儿：长的帅不帅？母亲：挺帅的。女儿：收入高不？母亲：不算很高，中等情况。女儿：是公务员不？母亲：
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/24/ML/CART/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -999,58 +946,18 @@ H(Y|X) & =\sum_x p(x)H(Y|X=x) \\\
       
         
           
-            <h1 id="朴素贝叶斯分类算法"><a href="#朴素贝叶斯分类算法" class="headerlink" title="朴素贝叶斯分类算法"></a>朴素贝叶斯分类算法</h1><h2 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h2><p>定理本身一目了然：\(P(A|B) = P(B|A) * P(A)/P(B)\)</p>
-<p>用语言解释就是：在B出现的前提下,A出现的概率等于A和B都出现的概率除以B出现的概率。</p>
-<p>换句话说就是后验概率和先验概率的关系。</p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>假设一个学校里有60个男生和40个女生。女生有一半人穿裤子，另一半人穿裙子；所有男生穿裤子。一个人在远处随机看到了一个穿裤子的学生。那么这个学生是女生的概率是多少？<a href="#jump">[1]</a></p>
-<p>使用贝叶斯定理，事件A是看到女生，事件B是看到一个穿裤子的学生。我们所要计算的是\(P(A|B)\)。</p>
-<p><strong>\(P(A)\)是忽略其它因素，看到女生的概率，在这里是40%</strong><br><strong>\(P(A’)\)是忽略其它因素，看到不是女生（即看到男生）的概率，在这里是60%</strong><br><strong>\(P(B|A)\)是女生穿裤子的概率，在这里是50%</strong><br><strong>\(P(B|A’)\)是男生穿裤子的概率，在这里是100%</strong><br><strong>\(P(B)\)是忽略其它因素，学生穿裤子的概率，\(P(B) = P(B|A)P(A)+P(B|A’)P(A’)\)，在这里是0.5×0.4+1×0.6 = 0.8.</strong></p>
-<p>根据贝叶斯定理，我们计算处后验概率\(P(A|B)\)</p>
-<script type="math/tex; mode=display">
-p(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{0.5*0.4}{0.8} = 0.25</script><h2 id="朴素贝叶斯概率模型"><a href="#朴素贝叶斯概率模型" class="headerlink" title="朴素贝叶斯概率模型"></a>朴素贝叶斯概率模型</h2><p>理论上，概率模型分类器是一个条件概率模型。<a href="#jump">[2]</a></p>
-<script type="math/tex; mode=display">P(C|F_1,...,F_n)</script><p>独立的类别变量 \(C\)有若干类别，条件依赖于若干特征变量\(F_1,…,F_n\)。 贝叶斯定理有以下式子：</p>
-<script type="math/tex; mode=display">P(C|F_1,...,F_n) = \frac{P(C)P(F_1,...,F_n|C)}{P(F_1,...,F_n)}</script><p>用朴素的语言可以表达为：</p>
-<script type="math/tex; mode=display">posterior = \frac{prior\times likehood}{evidence}</script><p>实际中，我们只关心分式中的分子部分，因为分母不依赖于\(C\)而且特征 \(F_i\)的值是给定的，于是分母可以认为是一个常数。这样分子就等价于联合分布模型\(P(C,F_1,…,F_n) \)<br>现在“朴素”的条件独立假设开始发挥作用:假设每个特征\(F_i\)对于其他特征 \(F_j\), \(i\neq j\)是条件独立的。这就意味着</p>
-<script type="math/tex; mode=display">P(F_1,...,F_n|C) = \prod_{i=1}^n P(F_i|C)</script><p>这意味着上述假设下，类变量 \(C\)的条件分布可以表达为：</p>
-<script type="math/tex; mode=display">P(C|F_1,...,F_n) = \frac{1}{Z} P(C)\prod_{i=1}^n P(F_i|C)</script><p>其中\(Z\)(证据因子)是一个只依赖与\(F_1,…,F_n\)等的缩放因子，当特征变量的值已知时是一个常数。</p>
-<h2 id="从概率模型中构造分类器"><a href="#从概率模型中构造分类器" class="headerlink" title="从概率模型中构造分类器"></a>从概率模型中构造分类器</h2><p>讨论至此为止我们导出了独立分布特征模型，也就是朴素贝叶斯概率模型。朴素贝叶斯分类器包括了这种模型和相应的决策规则。一个普通的规则就是选出最有可能的那个：这就是大家熟知的最大后验概率（MAP）决策准则。相应的分类器便是如下定义的分类公式：</p>
-<script type="math/tex; mode=display">classify(f_1,...,f_n) = arg \max_c P(C=c)\prod_{i=1}^nP(F_i=f_i|C=c)</script><h2 id="后验最大化的含义（期望风险最小化）"><a href="#后验最大化的含义（期望风险最小化）" class="headerlink" title="后验最大化的含义（期望风险最小化）"></a>后验最大化的含义（期望风险最小化）</h2><p>在选择0-1损失函数的情况下，期望风险指的是<a href="#jump">[3]</a></p>
-<script type="math/tex; mode=display">L(Y,f(X))=
-\begin{cases}
-1, &Y\neq f(X)  \\\
-0, &Y= f(X)
-\end{cases}</script><p>式中\(f(X)\)是分类决策函数，这是，期望风险函数是：</p>
-<script type="math/tex; mode=display">R_{exp}(f) = E[L(Y,f(X))]</script><p><strong>期望风险函数指的是预期与实际结果不一样个数的期望</strong></p>
-<p>期望是对联合分布\(P(X,Y)\)取的，由此取条件期望：</p>
-<script type="math/tex; mode=display">R_{exp}(f) = E_x \sum_{k=1}^K [L(c_k,f(X)]P(c_k|X)</script><p>为了使经验风险最小化，只需对\(X=x\)逐个极小化，由此得到：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-f(x) &= arg \min_y \sum_{k=1}^{K}L(c_k,y)P(c_k|X=x) \\\
-& = arg \min_y \sum_{k=1}^{K}P(y \neq c_k|X=x) \tag1
-\\\
-& = arg \min_y \sum_{k=1}^{K}(1-P(y = c_k|X=x)) \\\
-& = arg \max_y \sum_{k=1}^{K}P(y = c_k|X=x) \tag2\\\
-\end{align}</script><p><strong>\((1)\)表示使预期与结果不一致的个数最少,\((2)\)表示使预期与结果一致的个数最多。两式表达的意思一样</strong></p>
-<p>这样一来，根据<strong>期望风险最小化准则</strong>就得到了<strong>后验概率最大化准则</strong>：</p>
-<script type="math/tex; mode=display">f(x) = arg \max_{c_k} P(c_k|X=x)</script><h2 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h2><h3 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h3><p><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="noopener">维基百科：最大似然估计</a></p>
-<p><a href="https://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">详解最大似然估计（MLE）、最大后验概率估计（MAP），以及贝叶斯公式的理解</a></p>
-<h3 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h3><h1 id="贝叶斯方法的优缺点-6"><a href="#贝叶斯方法的优缺点-6" class="headerlink" title="贝叶斯方法的优缺点[6]"></a>贝叶斯方法的优缺点<a href="#jump">[6]</a></h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
-<li>对待预测样本进行预测，过程简单速度快(想想邮件分类的问题，预测就是分词后进行概率乘积，在log域直接做加法更快)。</li>
-<li>对于多分类问题也同样很有效，复杂度也不会有大程度上升。</li>
-<li>在分布独立这个假设成立的情况下，贝叶斯分类器效果奇好，会略胜于逻辑回归，同时我们需要的样本量也更少一点。</li>
-<li>对于类别类的输入特征变量，效果非常好。对于数值型变量特征，我们是默认它符合正态分布的。</li>
-</ol>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
-<li>对于测试集中的一个类别变量特征，如果在训练集里没见过，直接算的话概率就是0了，预测功能就失效了。使用平滑操作可以缓解这个问题，最常见的平滑技术是拉普拉斯估测。</li>
-<li>那个…咳咳，朴素贝叶斯算出的概率结果，比较大小还凑合，实际物理含义…恩，别太当真。</li>
-<li>朴素贝叶斯有分布独立的假设前提，而现实生活中这些predictor很难是完全独立的。</li>
-</ol>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料<span id="jump"></span></h1><p>[1]<a href="http://blog.sina.com.cn/s/blog_64827e4c0100lfqe.html" target="_blank" rel="noopener">理解贝叶斯,后验概率的最佳例子</a><br>[2]<a href="https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8#cite_note-5" target="_blank" rel="noopener">维基百科：朴素贝叶斯分类器</a><br>[3]李航 (2012) 统计学习方法. 清华大学出版社, 北京.<br>[4]<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="noopener">维基百科：最大似然估计</a><br>[5]<a href="https://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">详解最大似然估计（MLE）、最大后验概率估计（MAP），以及贝叶斯公式的理解</a><br>[6][NLP系列(4)_朴素贝叶斯实战与进阶][<a href="https://blog.csdn.net/han_xiaoyang/article/details/50629608" target="_blank" rel="noopener">https://blog.csdn.net/han_xiaoyang/article/details/50629608</a>]</p>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-
-
-          
+          朴素贝叶斯分类算法贝叶斯定理定理本身一目了然：\(P(A|B) = P(B|A) * P(A)/P(B)\)
+用语言解释就是：在B出现的前提下,A出现的概率等于A和B都出现的概率除以B出现的概率。
+换句话说就是后验概率和先验概率的关系。
+例子假设一个学校里有60个男生和40个女生。女生有一半人穿裤子
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/24/ML/Bayes/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1168,56 +1075,16 @@ f(x) &= arg \min_y \sum_{k=1}^{K}L(c_k,y)P(c_k|X=x) \\\
       
         
           
-            <h1 id="对拉格朗日乘子法的直观理解"><a href="#对拉格朗日乘子法的直观理解" class="headerlink" title="对拉格朗日乘子法的直观理解"></a>对拉格朗日乘子法的直观理解</h1><p>假如你面前有一座山，山上有一条复杂的小路，如果你爬山的时候只能顺着小路走，那么什么时候你发现自己到了某个至高点呢？很明显，当你发现自己不论是往前走，还是往后退时，高度总是下降的，那么这时你就位于一个局部的最高点了。<a href="#jump">[1]</a><br><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/LagrangeMultipliers3D.png" width="450"></p>
-<h1 id="拉格朗日乘子法的数学原理"><a href="#拉格朗日乘子法的数学原理" class="headerlink" title="拉格朗日乘子法的数学原理"></a>拉格朗日乘子法的数学原理</h1><p>经典拉格朗日乘子法是下面的优化问题：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\max_{x,y}f(x,y) \\\
-s.t.g(x,y)=0
-\end{align} \tag 1</script><p>我们可以将\( f(x,y) \)看作是山，将\( g(x,y)=0 \)看作是山上的小路。</p>
-<p>这里采用等高线方式描述\( f(x,y) \)（对方程\( f(x,y)=d \)对不同d绘图），并绘制约束条件\( g(x,y)=0 \)的曲线。相当于约束曲线\( g(x,y)=0 \)与\( f(x,y) \)的某条等高线相切时，取得最优解。(如下图，<strong>箭头代表梯度方向</strong>)</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/LagrangeMultipliers2D.svg" width="450"></p>
-<p><strong>个人觉得\( g(x,y)=0 \)既可以看作是一条约束直线（紫橘色线），可也以看作是一个平面（蓝色平面）</strong><br><strong>浅蓝色曲线是橘色线在红色平面上的隐射（也是上图中的红线）</strong><br><strong>相切指的是紫橘色线在深蓝色平面上与浅蓝色曲线的切点（也是我们要求的极值）</strong></p>
-<p><img src="https://qph.ec.quoracdn.net/main-qimg-353636823f9a407455d4685c63639d04" width="450"></p>
-<p>“当\( g(x,y)=0 \)与\( f(x,y) \)等高线相切时”，是取得最优解的充要条件（前提是\( f(x,y) \)是凸函数）。因为没有相切的时候，还可以沿着红线向高的地方前进。该条件可拆分成两部分：</p>
-<ol>
-<li>\( g(x,y) \)与\( f(x,y) \)的某条等高线相切（<strong>等价于寻找使这两个函数梯度方向共线的点</strong>）<br><strong>（复习课本中梯度的性质：某点梯度的方向就是函数等值线\(f({\bf{x}}) = C\)在这点的法线方向，等值线就是地理的等高线）</strong></li>
-<li>\( g(x,y)=0 \)</li>
-</ol>
-<p>上述条件可用方程组描述如下所示： </p>
-<script type="math/tex; mode=display">
-\begin{cases}
-\nabla_{x,y}f(x,y) = \lambda \nabla_{x,y} g(x,y) \\\
-g(x,y)=0
-\end{cases} \tag 2</script><p>这时引入拉格朗日函数： </p>
-<script type="math/tex; mode=display">L(x,y,\lambda) = f(x,y) + \lambda g(x,y) \tag 3</script><p>则拉格朗日函数\( L(x,y,\lambda) \)：的梯度为</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-\nabla_{x,y}L(x,y,\lambda) =\nabla_{x,y}f(x,y) + \lambda \nabla_{x,y} g(x,y) \\\
-\nabla_{\lambda}L(x,y,\lambda) = g(x,y)
-\end{cases} \tag 4</script><p>即若令拉格朗日函数的梯度为零，即令(4)式为零，即可得到方程(2)，虽然\( \lambda \)符号相反但不影响。</p>
-<h1 id="系数-lambda-作用"><a href="#系数-lambda-作用" class="headerlink" title="系数\( \lambda \)作用"></a>系数\( \lambda \)作用</h1><p>为了消除正负号可能对读者带来的困扰，我们对(2)和(4)做如下变化</p>
-<script type="math/tex; mode=display">|\lambda| = |\frac{\nabla f(x)}{\nabla g(x)}| \tag5</script><p>可以发现，当\( |\lambda| \)越小，\( \nabla g(x) \)的模就越大于\( \nabla f(x) \)。极端情况下，\( |\lambda| \rightarrow 0\)，此时\( |\nabla g(x)|  \rightarrow \infty  \)。这意味着在\(x\)点，\( g(x) \)几乎是垂直的，对增量非常敏感：当最优值不小心变一点点，条件\( g(x)=0 \)将严重偏离；若\( |\lambda| \)很大，\( g(x) \)几乎是水平的，则其对增量不敏感（若\( g(x) \)的轻微偏离不会造成太大的损失，可以适当牺牲约束条件的精确性，来换取更优的解）。<br>换句话说，\( |\lambda| \)越小，其求得的结果灵敏度越高，反之越低；可以说\( |\lambda| \)是衡量最优解灵敏度的一种方法。（当然也可以直接求\( \nabla g(x) \)来衡量灵敏度，这样更绝对一点）<a href="#jump">[2]</a></p>
-<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>设一个具体的例子，我们需要求下列问题<a href="#jump">[3]</a>:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\max_{x,y}f(x,y) = x^2y \\\
-s.t.g(x,y)=x^2+y^2-3=0
-\end{align}</script><p><img src="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/Lagrange_simple_1.png" width="450"></p>
-<p>只有一个约束，使用一个乘子，设为\(\lambda\)，列出拉格朗日函数:</p>
-<script type="math/tex; mode=display">L(x,,y,\lambda) = f(x,y) - \lambda (g(x,y)-c) =x^2y + \lambda(x^2+y^2-3)</script><p>接下来求解上式，分别对三个待求量偏微分:</p>
-<script type="math/tex; mode=display">\nabla_{x,y,\lambda}L(x,y,\lambda) = (\nabla_x L,\nabla_y L,\nabla_\lambda L)=(2xy+2\lambda x,x^2+2\lambda y,x^2+y^2-3)</script><p>令偏微分分别等于0，得到:</p>
-<script type="math/tex; mode=display">
-\nabla_{x,y,\lambda}L(x,y,\lambda)=0 \Longleftrightarrow 
-\begin{cases}
-2xy+2\lambda x=0\\\
-x^2+2\lambda y=0\\\
-x^2+y^2-3=0
-\end{cases}</script><p>根据上式，我们可以解得\( (x,y,\lambda) \)为：</p>
-<script type="math/tex; mode=display">(\pm\sqrt{2},1,-1);(\pm\sqrt{2},-1,1);(0,\pm\sqrt{3},0)</script><p>根据几个不同的解带入\( f(x,y) \)得到，2，-2，0，也就是我们需要的最大值，最小值，对应的直观图像解释如上图图所示（<strong>非常直观的展现约束和等高线的含义</strong>）</p>
-<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：<span id="jump"></span></h1><p>[1] <a href="http://blog.csdn.net/unoboros/article/details/29363223" target="_blank" rel="noopener">一种对拉格朗日乘子的直观理解</a><br>[2] <a href="http://blog.csdn.net/u014792304/article/details/78396955" target="_blank" rel="noopener">拉格朗日乘子法（Lagrange Multiplier）详解以及乘子lambda的意义</a><br>[3]<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/" target="_blank" rel="noopener">【直观详解】拉格朗日乘法和KKT条件</a><br>[4]<a href="https://zhuanlan.zhihu.com/p/26514613" target="_blank" rel="noopener">浅谈最优化问题的KKT条件</a></p>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-          
+          对拉格朗日乘子法的直观理解假如你面前有一座山，山上有一条复杂的小路，如果你爬山的时候只能顺着小路走，那么什么时候你发现自己到了某个至高点呢？很明显，当你发现自己不论是往前走，还是往后退时，高度总是下降的，那么这时你就位于一个局部的最高点了。[1]
+拉格朗日乘子法的数学原理经典拉格朗日乘子法是下面的优
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/20/ML/Lagrange/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1335,49 +1202,18 @@ x^2+y^2-3=0
       
         
           
-            <h1 id="逻辑斯蒂回归模型定义及来源"><a href="#逻辑斯蒂回归模型定义及来源" class="headerlink" title="逻辑斯蒂回归模型定义及来源"></a>逻辑斯蒂回归模型定义及来源</h1><h2 id="logist分布"><a href="#logist分布" class="headerlink" title="logist分布"></a>logist分布</h2><p>逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数：</p>
-<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-x}} \tag1</script><p><img src="https://cdn-images-1.medium.com/max/1600/1*sOtpVYq2Msjxz51XMn1QSA.png" width="450"></p>
-<p>sigmoid函数可以做回归也可以做分类。相比于线性回归，它有一个好处是不容易受极端值的影响。<br><img src="http://7xkmdr.com1.z0.glb.clouddn.com/lr5.jpg" width="600"></p>
-<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>而逻辑斯蒂回归模型模型的另一个则是来源于线性回归：</p>
-<script type="math/tex; mode=display">g(x) = w_0x_0 +   w_1x_1  + ··· +  w_nx_n = w^Tx \tag2</script><p>把两者组合起来，对线性回归的结果加上一个逻辑斯蒂函数，就是我们说的逻辑斯蒂回归：</p>
-<script type="math/tex; mode=display">f(x) = \frac{1}{1+e^{-g(x)}} = \frac{1}{1+e^{-w^Tx}} = \frac{e^{w^Tx}}{1+e^{w^Tx}} \tag3</script><p>logistic回归就是一个线性分类模型，它与线性回归的不同点在于：为了将线性回归输出的很大范围的数，例如从负无穷到正无穷，压缩到0和1之间，这样的输出值表达为“可能性”才能说服广大民众。当然了，把大值压缩到这个范围还有个很好的好处，就是可以消除特别冒尖的变量的影响（不知道理解的是否正确）。而实现这个伟大的功能其实就只需要平凡一举，也就是在输出加一个logistic函数。另外，对于二分类来说，可以简单的认为：如果样本x属于正类的概率大于0.5，那么就判定它是正类，否则就是负类。<a href="#jump">[1]</a><br><img src="http://img.blog.csdn.net/20140302234224515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvem91eHkwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="450"><br><strong>逻辑回归的成功之处在于，将原本输出结果范围可以非常大的\(w^Tx\) 通过sigmoid函数映射到(0,1)，从而完成概率的估测。</strong></p>
-<h1 id="二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导"><a href="#二项逻辑斯蒂回归-binomial-logistic-regression-模型与推导" class="headerlink" title="二项逻辑斯蒂回归( binomial logistic regression)模型与推导"></a>二项逻辑斯蒂回归( binomial logistic regression)模型与推导</h1><h2 id="二项逻辑斯蒂回归模型"><a href="#二项逻辑斯蒂回归模型" class="headerlink" title="二项逻辑斯蒂回归模型"></a>二项逻辑斯蒂回归模型</h2><p>二项回归模型形式表示如下:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-p(Y=1|x)= \frac{e^{w^Tx}}{1+e^{w^Tx}} \tag4\\\
-p(Y=0|x)=1−p(Y=1|x)=\frac{1}{1+e^{w^Tx}} \tag5
-\end{align}</script><p>在上一节中，我们讲，这个来源于我们的sigmoid函数。而具体的，其实主要来源于一个逻辑斯蒂回归模型。它牵扯到这样一个名词——几率。</p>
-<p>一个事件的几率（odds）是指该事件发生的概率与该事件不发生的概率的比值。如果事件发生的概率是\(p\)，那么该事件的几率是\(\frac{p}{1-p}\)。因次，该事件的对数几率就为： </p>
-<script type="math/tex; mode=display">logit(p)=log(\frac{p}{1-p}) \tag6</script><p>对逻辑斯蒂回归而言，将\( (4)和(5)带入(6)\)得：</p>
-<script type="math/tex; mode=display">log\frac{P(Y=1|x)}{1-P(Y=1|x)} = w^Tx \tag7</script><p>这个式子就是说，输出Y=1的<strong>对数几率</strong>是输入x的线性函数。</p>
-<h2 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h2><p>首先，我们可以得出似然函数为：</p>
-<script type="math/tex; mode=display">\prod_{i=1}^N p(Y=1|x_i)^{y_i} p(Y=0|x_i)^{y_i} \tag8</script><p>因为似然函数不好直接求解，所以转换为对数似然函数：</p>
-<script type="math/tex; mode=display">
-L(w)= \sum_{i=1}^N [y_ilogp(Y=1|x_i)+(1-y_i)p(Y=0|x_i)] \tag9</script><p>将\( (4)和(5)带入(9)\)，很容易求出：</p>
-<script type="math/tex; mode=display">
-L(w)= \sum_{i=1}^N[y_i(w^Tx_i)-log((1+e^{w^Tx_i}))] \tag{10}</script><p><strong>对\(L(w)\)求极大值，就可以得到\(w\)的估计值。</strong>这样，问题就变成了以对数似然函数为目标函数的最优化问题。<br>这时候，用\(L(w)\)对\(w\)求导，得到：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\nabla_wL(w) = \sum_{i=1}^N(y_ix_i - \frac{e^{w^Tx_i}}{1+e^{w^Tx_i}}x_i) = x_i\sum_{i=1}^N(y_i - h_w(x_i) ) \\\
-h_w(x_i) = P(y=1|x_i)
-\end{align}</script><p><strong>(\(h_w(x_i)\)为逻辑斯蒂模型)</strong></p>
-<p>然后我们令该导数为0，你会很失望的发现，它无法解析求解。不信你就去尝试一下。所以没办法了，只能借助高大上的迭代来搞定了。通常采用的方法是梯度下降法或者拟牛顿法。</p>
-<h2 id="优化求解"><a href="#优化求解" class="headerlink" title="优化求解"></a>优化求解</h2><h3 id="梯度下降-gradient-descent"><a href="#梯度下降-gradient-descent" class="headerlink" title="梯度下降(gradient descent)"></a>梯度下降(gradient descent)</h3><p> 为了求\(L(w)\)的极大值，我们采用梯度上升来解决这个问题，即沿着梯度的反向发进行迭代：</p>
-<script type="math/tex; mode=display">w_{t+1}^T = w_t^T - \alpha\nabla_wL(w) = w_t^T - \alpha\sum_{i=1}^N(y_i - h_w(x_i) )x_i</script><p> 其中，参数α叫学习率，就是每一步走多远，这个参数蛮关键的。如果设置的太多，那么很容易就在最优值附加徘徊，因为你步伐太大了。但如果设置的太小，那收敛速度就太慢了，向蜗牛一样，虽然会落在最优的点，但是这速度如果是猴年马月，我们也没这耐心啊。所以有的改进就是在这个学习率这个地方下刀子的。我开始迭代是，学习率大，慢慢的接近最优值的时候，我的学习率变小就可以了。</p>
-<h3 id="随机梯度下降SGD-stochastic-gradient-descent"><a href="#随机梯度下降SGD-stochastic-gradient-descent" class="headerlink" title="随机梯度下降SGD (stochastic gradient descent)"></a>随机梯度下降SGD (stochastic gradient descent)</h3><p>梯度下降算法在每次更新回归系数的时候都需要遍历整个数据集（计算整个数据集的回归误差），该方法对小数据集尚可。但当遇到有数十亿样本和成千上万的特征时，就有点力不从心了，它的计算复杂度太高。SGD则是每来一次样本进行一次计算：</p>
-<script type="math/tex; mode=display">w_{t+1}^T  = w_t^T - \alpha(y_i - h_w(x_i) )x_i</script><h3 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h3><h4 id="牛顿法简介"><a href="#牛顿法简介" class="headerlink" title="牛顿法简介"></a>牛顿法简介</h4><p><strong>此方法用来寻找函数的零点，即\(f(x)=0\)的根</strong></p>
-<p>首先，选择一个接近函数\(f(x)\)零点的 \(x_0\)，计算相应的\(f(x_0)\)和切线斜率 \( f^\prime(x_0) \)（这里\(f^\prime\)表示函数 \(f\)的导数）。然后我们计算穿过点\( (x_0,f(x_0)) \)并且斜率为\( f^\prime(x_0) \)的直线和 \(x\)轴的交点的\(x\)坐标，也就是求如下方程的解：</p>
-<script type="math/tex; mode=display">0=(x-x_0)f\prime(x_0) +f(x_0)</script><p>我们将新求得的点的\(x\)坐标命名为\(x_1\)，通常 \(x_1\)会比\(x_0\)更接近方程\(f(x)=0\)的解。因此我们现在可以利用 \(x_1\)开始下一轮迭代。迭代公式可化简为如下所示：</p>
-<script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f(x_n)}{f^\prime(x_n)}</script><p>牛顿法迭代过程如下所示：</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif" alt="asdfsfd"></p>
-<h4 id="应用于最优化的牛顿法"><a href="#应用于最优化的牛顿法" class="headerlink" title="应用于最优化的牛顿法"></a>应用于最优化的牛顿法</h4><p>在上面介绍的牛顿法中, 通过迭代以求解可微函数\(f\)的零点的一种算法 (即求 \(x\)使得\(f(x)=0\)。<br>如果我们想要找到函数的最优解（即极值），就需要使函数的导数为零（即求 \(x\)使得\( f^\prime (x)=0 \)）<br>所以应用于最优化的牛顿法的迭代公式为:</p>
-<script type="math/tex; mode=display">x_{n+1} = x_n - \frac{f^\prime(x_n)}{f^{\prime\prime}(x_n)}</script><p>根据wiki上的解释，从几何上说，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径。<a href="#jump">[6]</a><br><img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Newton_optimization_vs_grad_descent.svg" width="300"><br>红色的牛顿法的迭代路径，绿色的是梯度下降法的迭代路径。</p>
-<!-- ### 拟牛顿法 -->
-<h1 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料<span id="jump"></span></h1><p>[1]<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="noopener">机器学习算法与Python实践之（七）逻辑回归（Logistic Regression）</a><br>[2]<a href="http://blog.csdn.net/qq_35082030/article/details/70474076" target="_blank" rel="noopener">统计学习方法——逻辑斯蒂回归模型</a><br>[3]<a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="noopener">【机器学习算法系列之二】浅析Logistic Regression</a><br>[4]<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">维基百科：牛顿法</a><br>[5]<a href="https://zh.wikipedia.org/wiki/%E6%87%89%E7%94%A8%E6%96%BC%E6%9C%80%E5%84%AA%E5%8C%96%E7%9A%84%E7%89%9B%E9%A0%93%E6%B3%95" target="_blank" rel="noopener">维基百科：应用于最优化的牛顿法</a><br>[6]<a href="https://www.zhihu.com/question/19723347/answer/14636244" target="_blank" rel="noopener">最优化问题中，牛顿法为什么比梯度下降法求解需要的迭代次数更少？ - 大饼土博的回答 - 知乎</a><br>[7]<a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank" rel="noopener">Wiki:Multinomial logistic regression</a><br>[8]<a href="http://blog.csdn.net/han_xiaoyang/article/details/49332321" target="_blank" rel="noopener">机器学习系列(2)_从初等数学视角解读逻辑回归</a></p>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-
-          
+          逻辑斯蒂回归模型定义及来源logist分布逻辑斯蒂回归模型主要是来源于逻辑斯蒂函数。它有一个大家很熟悉的名字，那就是sigmoid函数：
+f(x) = \frac{1}{1+e^{-x}} \tag1
+sigmoid函数可以做回归也可以做分类。相比于线性回归，它有一个好处是不容易受极端值的影响。
+线
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/18/ML/logist/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1495,23 +1331,16 @@ h_w(x_i) = P(y=1|x_i)
       
         
           
-            <p>这种做法可能会对你的磁盘IO造成一小部分性能负担，但负面影响足以忽略。另外，由于这种频率的读写会被磁盘缓存接管，不必担心磁盘寿命的影响。</p>
-<h1 id="安装软件包管理器"><a href="#安装软件包管理器" class="headerlink" title="安装软件包管理器"></a>安装软件包管理器</h1><p>对于刚安装好的Sublime Text，我们需要安装一个软件包管理器。<br>同时按下ctrl+`,将会在窗口底部出现一个小控制台。<br>我们把这段话复制并粘贴到控制台的编辑栏里：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,<span class="built_in">os</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); <span class="built_in">open</span>(<span class="built_in">os</span>.<span class="built_in">path</span>.join(ipp, pf), <span class="string">'wb'</span>).<span class="built_in">write</span>(urllib.request.urlopen( <span class="string">'http://sublime.wbond.net/'</span> + pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).<span class="built_in">read</span>())</span><br></pre></td></tr></table></figure></p>
-<p>耐心等待操作完成，之后关闭并重新打开Sublime Text 3.</p>
-<h1 id="安装我们用到的插件"><a href="#安装我们用到的插件" class="headerlink" title="安装我们用到的插件"></a>安装我们用到的插件</h1><p>按下ctrl+shift+P打开快速菜单，键入’Package Control: Install Package’,<br>回车，等待数据更新，完成后会主动显示软件列表。<br><strong>Markdown Editing</strong>  // Markdown编辑和语法高亮支持<br><strong>Markdown Preview</strong>  // Markdown导出html预览支持<br><strong>auto-save</strong>  // 可自定义的自动保存功能<br><strong>LiveReload</strong>  // 可以即时刷新 </p>
-<p>前两个是标准的markdown编辑与预览工具，第三个和第四个是实现实时预览的关键。<br>安装结束后我们新建一个md文档试试。</p>
-<h1 id="实现实时预览功能"><a href="#实现实时预览功能" class="headerlink" title="实现实时预览功能"></a>实现实时预览功能</h1><h2 id="先实现最基本的预览功能"><a href="#先实现最基本的预览功能" class="headerlink" title="先实现最基本的预览功能"></a>先实现最基本的预览功能</h2><p>我们使用Markdown Preview插件来打开浏览器进行预览：<br>按下ctrl+shift+P打开快速菜单，键入<strong>Markdown Preview in Browser</strong>,之后选择markdown即可打开你的默认浏览器来预览刚才的内容。 </p>
-<p>一定要记得先在磁盘上保存为一个文件，这样才能转化成html。</p>
-<h2 id="实现文件自动保存（启动auto插件）"><a href="#实现文件自动保存（启动auto插件）" class="headerlink" title="实现文件自动保存（启动auto插件）"></a>实现文件自动保存（启动auto插件）</h2><p>这里我们用到了一个叫做auto-save的插件，它可以针对一个文档实现空闲x秒后自动保存。 </p>
-<p>我们打开auto-save的默认设置和用户设置文件：<br>Preference-&gt;Package Settings-&gt;Auto-save-&gt;打开Settings-Defualt和Settings-User<br>将Default的内容复制粘贴到User里面，然后修改等待时长：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"auto_save_delay_in_seconds"</span>: <span class="number">0.15</span>,</span><br></pre></td></tr></table></figure></p>
-<p>经过实测，0.15是一个比较能接受的值，不会对磁盘造成频繁读写的影响，延迟也不大。 </p>
-<p>最后就是打开本文档的自动保存功能了：<br>按下ctrl+shift+P打开快速菜单，键入<strong>Toggle AutoSave: current file only</strong> 。<br>至此，自动保存将在文档更改0.15秒后触发一次，停止自动保存就将上述步骤再做一次即可。</p>
-<p><strong>这一步可以省略，不进行这一步的话需要ctrl+s后网页才会显示修改后的内容。</strong></p>
-<h2 id="实现实时预览（启动liveReload插件实现网页实时加载）"><a href="#实现实时预览（启动liveReload插件实现网页实时加载）" class="headerlink" title="实现实时预览（启动liveReload插件实现网页实时加载）"></a>实现实时预览（启动liveReload插件实现网页实时加载）</h2><p>按快捷键 Ctrl + Shift + P，输入<strong>LiveReload: Enable/disable plug-ins.</strong><br>并选择<strong>Enable: Simple Reload with delay (400ms).</strong><br>完成启用工作。</p>
-<p>这时再行编辑md文件，即可实现实时预览。</p>
-<p>感谢：<br><a href="http://jokerliang.com/markdown-editing-and-preview-in-sublime-text-3.html" target="_blank" rel="noopener">http://jokerliang.com/markdown-editing-and-preview-in-sublime-text-3.html</a><br><a href="http://blog.csdn.net/github_32886825/article/details/52930195" target="_blank" rel="noopener">http://blog.csdn.net/github_32886825/article/details/52930195</a></p>
-
-          
+          这种做法可能会对你的磁盘IO造成一小部分性能负担，但负面影响足以忽略。另外，由于这种频率的读写会被磁盘缓存接管，不必担心磁盘寿命的影响。
+安装软件包管理器对于刚安装好的Sublime Text，我们需要安装一个软件包管理器。同时按下ctrl+`,将会在窗口底部出现一个小控制台。我们把这段话复制并粘贴
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/18/sublime+markdown/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1629,28 +1458,18 @@ h_w(x_i) = P(y=1|x_i)
       
         
           
-            <h2 id="创建代码库"><a href="#创建代码库" class="headerlink" title="创建代码库"></a>创建代码库</h2><p>yourname/yourname.github.io 固定格式</p>
-<h2 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h2><h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>安装Hexo之前要安装git和Node.js</p>
-<p>安装好git和Node.js后，在命令行中输入：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-<span class="keyword">cli</span> -g</span><br></pre></td></tr></table></figure></p>
-<p>可能你会看到一个WARN，但是不用担心，这不会影响你的正常使用。 然后输入<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo <span class="comment">--save</span></span><br></pre></td></tr></table></figure></p>
-<p>然后你会看到命令行窗口刷了一大堆白字，下面我们来看一看Hexo是不是已经安装好了。 在命令行中输入：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo -v</span></span><br></pre></td></tr></table></figure></p>
-<p>如果显示版本信息则说明安装成功</p>
-<h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>新建一个文件夹，然后在gitbash里进入这个文件夹的目录，输入：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo</span> init <span class="comment">#必须是空的文件夹</span></span><br></pre></td></tr></table></figure></p>
-<p>然后输入：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure></p>
-<p>之后npm将会自动安装你需要的组件，只需要等待npm操作即可</p>
-<h3 id="首次体验Hexo"><a href="#首次体验Hexo" class="headerlink" title="首次体验Hexo"></a>首次体验Hexo</h3><p>继续操作，同样是在命令行中，输入：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g  # generate static files</span><br><span class="line">hexo s -p 4000 # start the<span class="built_in"> server </span>并且指定端口</span><br></pre></td></tr></table></figure></p>
-<p>然后会提示：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Hexo is running <span class="keyword">at</span> <span class="keyword">http</span>://<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">4000</span>/. Press Ctrl+C <span class="built_in">to</span> <span class="built_in">stop</span>.</span><br></pre></td></tr></table></figure></p>
-<p>在浏览器中打开<a href="http://localhost:4000/，你将会看到自己的博客。" target="_blank" rel="noopener">http://localhost:4000/，你将会看到自己的博客。</a><br>到目前为止，Hexo在本地的配置已经全都结束了。</p>
-<h2 id="使用Hexo"><a href="#使用Hexo" class="headerlink" title="使用Hexo"></a>使用Hexo</h2><p>配置Deployment<br>首先，你需要为自己配置身份信息，打开命令行，然后输入：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">"yourname"</span></span><br><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">"youremail"</span></span><br></pre></td></tr></table></figure></p>
-<p>同样在_config.yml文件中，找到Deployment，然后按照如下修改：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:yourname/yourname.github.io.git</span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure></p>
-<p>如果使用git方式进行部署，先执行<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure></p>
-<p>来安装所需的插件</p>
-<p>然后在当前目录打开命令行，输入：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo</span> d   <span class="comment"># deploy your website</span></span><br></pre></td></tr></table></figure></p>
-<p>随后按照提示，分别输入自己的Github账号用户名和密码，开始上传。 然后通过<a href="http://yourname.github.io/来访问自己刚刚上传的网站。" target="_blank" rel="noopener">http://yourname.github.io/来访问自己刚刚上传的网站。</a></p>
-<h3 id="添加新文章"><a href="#添加新文章" class="headerlink" title="添加新文章"></a>添加新文章</h3><p>打开Hexo目录下的source文件夹，所有的文章都会以md形式保存在_post文件夹中，只要在_post文件夹中新建md类型的文档，就能在执行hexo g的时候被渲染。 新建的文章头需要添加一些yml信息，如下所示：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hello-world</span>   <span class="string">//在此处添加你的标题。</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2014</span><span class="bullet">-11</span><span class="bullet">-7</span> <span class="number">08</span><span class="string">:55:29</span>   <span class="string">//在此处输入你编辑这篇文章的时间。</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">Exercise</span>   <span class="string">//在此处输入这篇文章的分类。</span></span><br><span class="line"><span class="attr">toc:</span> <span class="literal">true</span>  <span class="string">//在此处设定是否开启目录，需要主题支持。</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure></p>
-<p><a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="noopener">https://xuanwo.org/2015/03/26/hexo-intor/</a><br><a href="https://meesong.github.io/StaticBlog/2017/NexT+Gitment/" target="_blank" rel="noopener">https://meesong.github.io/StaticBlog/2017/NexT+Gitment/</a></p>
-
-          
+          创建代码库yourname/yourname.github.io 固定格式
+配置Hexo安装Hexo安装Hexo之前要安装git和Node.js
+安装好git和Node.js后，在命令行中输入：1npm install hexo-cli -g
+可能你会看到一个WARN，但是不用担心，这不会影响你的正
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/14/github+hexo/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
